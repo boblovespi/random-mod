@@ -45,17 +45,18 @@ public class RandomMod implements ModInitializer
 
 	public static final Block PEGMATITE = block("pegmatite", Block::new, QuiltBlockSettings.copyOf(Blocks.SMOOTH_BASALT));
 	public static final Block PURE_QUARTZ_BLOCK = block("pure_quartz_block", AmethystBlock::new,
-			QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).mapColor(MapColor.WOOL));
+			QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).mapColor(MapColor.WOOL).strength(3, 9));
 	public static final Block BUDDING_PURE_QUARTZ = block("budding_pure_quartz", BuddingPureQuartz::new,
-			QuiltBlockSettings.copyOf(Blocks.BUDDING_AMETHYST).mapColor(MapColor.WOOL));
+			QuiltBlockSettings.copyOf(Blocks.BUDDING_AMETHYST).mapColor(MapColor.WOOL).strength(3, 9));
 	public static final Block PURE_QUARTZ_CLUSTER = block("pure_quartz_cluster", s -> new AmethystClusterBlock(7, 2, s),
-			QuiltBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.WOOL));
+			QuiltBlockSettings.copyOf(Blocks.AMETHYST_CLUSTER).mapColor(MapColor.WOOL).strength(3, 9));
 	public static final Block LARGE_PURE_QUARTZ_BUD = block("large_pure_quartz_bud", s -> new AmethystClusterBlock(5, 3, s),
-			QuiltBlockSettings.copyOf(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.WOOL));
+			QuiltBlockSettings.copyOf(Blocks.LARGE_AMETHYST_BUD).mapColor(MapColor.WOOL).strength(3, 9));
 	public static final Block MEDIUM_PURE_QUARTZ_BUD = block("medium_pure_quartz_bud", s -> new AmethystClusterBlock(4, 4, s),
-			QuiltBlockSettings.copyOf(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.WOOL));
+			QuiltBlockSettings.copyOf(Blocks.MEDIUM_AMETHYST_BUD).mapColor(MapColor.WOOL).strength(3, 9));
 	public static final Block SMALL_PURE_QUARTZ_BUD = block("small_pure_quartz_bud", s -> new AmethystClusterBlock(3, 5, s),
-			QuiltBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.WOOL));
+			QuiltBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.WOOL).strength(3, 9));
+	public static final Block REINFORCED_GLASS = block("reinforced_glass", GlassBlock::new, QuiltBlockSettings.copyOf(Blocks.TINTED_GLASS).strength(10, 100));
 
 	public static final Block REMEMBERER = block("rememberer", Rememberer::new, QuiltBlockSettings.copyOf(Blocks.REPEATER));
 
@@ -90,6 +91,9 @@ public class RandomMod implements ModInitializer
 		LOGGER.debug("Adding items to item groups...");
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(c -> {
 			c.addAfter(Blocks.AMETHYST_BLOCK, PURE_QUARTZ_BLOCK);
+		});
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(c -> {
+			c.addAfter(Blocks.TINTED_GLASS, REINFORCED_GLASS);
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL_BLOCKS).register(c -> {
 			c.addAfter(Blocks.SMOOTH_BASALT, PEGMATITE);

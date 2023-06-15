@@ -32,6 +32,7 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 						 .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.CLUSTER_MAX_HARVESTABLES))).alternatively(
 								 this.applyExplosionDecay(block,
 										 ItemEntry.builder(RandomMod.PURE_QUARTZ_SHARD).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))))));
+		addDrop(RandomMod.REINFORCED_GLASS);
 		addDropWithSilkTouch(RandomMod.SMALL_PURE_QUARTZ_BUD);
 		addDropWithSilkTouch(RandomMod.MEDIUM_PURE_QUARTZ_BUD);
 		addDropWithSilkTouch(RandomMod.LARGE_PURE_QUARTZ_BUD);

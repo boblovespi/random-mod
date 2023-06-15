@@ -1,4 +1,4 @@
-// 1.20	2023-06-15T05:03:15.3336967	Random Mod/Block Loot Tables
+// 1.20	2023-06-15T05:39:29.0025976	Random Mod/Block Loot Tables
 ef2775cb7ee32a5aa9418b525aa862c28294c21a data\boblovespirandommod\loot_tables\blocks\large_pure_quartz_bud.json
 c1f0011c6c81ed51049674bf34a58530df40e380 data\boblovespirandommod\loot_tables\blocks\small_pure_quartz_bud.json
 fe556a2dd46c4b7441277daa0087ca975fe1c79a data\boblovespirandommod\loot_tables\blocks\pure_quartz_cluster.json
@@ -6,3 +6,4 @@ fe556a2dd46c4b7441277daa0087ca975fe1c79a data\boblovespirandommod\loot_tables\bl
 43c18f7ebdeb36b9b394165e4a05979006e1a6f5 data\boblovespirandommod\loot_tables\blocks\pegmatite.json
 20e4a069b44c75b366bed182acc08562333fe2fa data\boblovespirandommod\loot_tables\blocks\medium_pure_quartz_bud.json
 b59879c37baece2c55a6328e409000580a930c4c data\boblovespirandommod\loot_tables\blocks\pure_quartz_block.json
+74e87b76a6166698d28f97c801e6962f2d7a5232 data\boblovespirandommod\loot_tables\blocks\reinforced_glass.json

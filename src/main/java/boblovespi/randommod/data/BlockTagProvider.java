@@ -38,6 +38,6 @@ public class BlockTagProvider extends FabricTagProvider.BlockTagProvider
 	protected void configure(HolderLookup.Provider arg)
 	{
 		getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(RandomMod.PEGMATITE, RandomMod.PURE_QUARTZ_BLOCK, RandomMod.BUDDING_PURE_QUARTZ,
-				RandomMod.PURE_QUARTZ_CLUSTER, RandomMod.LARGE_PURE_QUARTZ_BUD, RandomMod.MEDIUM_PURE_QUARTZ_BUD, RandomMod.SMALL_PURE_QUARTZ_BUD);
+				RandomMod.PURE_QUARTZ_CLUSTER, RandomMod.LARGE_PURE_QUARTZ_BUD, RandomMod.MEDIUM_PURE_QUARTZ_BUD, RandomMod.SMALL_PURE_QUARTZ_BUD, RandomMod.REINFORCED_GLASS);
 	}
 }

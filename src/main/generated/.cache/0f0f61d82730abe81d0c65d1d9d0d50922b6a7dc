@@ -1,9 +1,11 @@
-// 1.20	2023-06-15T05:03:15.3357177	Random Mod/Recipes
+// 1.20	2023-06-15T05:39:29.0045905	Random Mod/Recipes
 e545dcddfac755f8703e631fb68354f27f7c171b data\boblovespirandommod\recipes\quartz_disc.json
+a9ad1dfa7b7d53967a045f8b9e81ec3ad4f656b1 data\boblovespirandommod\recipes\reinforced_glass.json
 632e8e83fb193af8d64d22a1119b653e330c2093 data\boblovespirandommod\advancements\recipes\redstone\rememberer.json
 83ff8127c8259311558feeedd89393c49d64f659 data\boblovespirandommod\advancements\recipes\tools\depth_meter.json
 c77718c7435c343df3f031daa52dccd410ef61e9 data\boblovespirandommod\recipes\pure_quartz_block.json
 24dfc6df983c4b7fcbe0e713fd4c047a78c296ad data\boblovespirandommod\advancements\recipes\building_blocks\pure_quartz_block.json
 184e7e27be826735de3438b5f3672b41a79160f1 data\boblovespirandommod\recipes\depth_meter.json
+ef49680270a73f6a0c7289fcb0d26260229b5f8f data\boblovespirandommod\advancements\recipes\building_blocks\reinforced_glass.json
 5d68b7fb10d4537bba6e1ec4a089a6da2bd773b5 data\boblovespirandommod\advancements\recipes\misc\quartz_disc.json
 85d8fbd828d3ef29cb651501a6f247dfdc436311 data\boblovespirandommod\recipes\rememberer.json

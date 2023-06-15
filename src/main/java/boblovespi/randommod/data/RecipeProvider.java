@@ -38,6 +38,14 @@ public class RecipeProvider extends FabricRecipeProvider
 							   .pattern(" # ")
 							   .criterion("has_netherite", conditionsFromItem(Items.NETHERITE_INGOT))
 							   .offerTo(exporter);
+		ShapedRecipeJsonFactory.create(RecipeCategory.BUILDING_BLOCKS, RandomMod.REINFORCED_GLASS, 2)
+							   .ingredient('G', Blocks.GLASS)
+							   .ingredient('S', RandomMod.PURE_QUARTZ_SHARD)
+							   .pattern(" S ")
+							   .pattern("SGS")
+							   .pattern(" S ")
+							   .criterion("has_pure_quartz", conditionsFromItem(RandomMod.PURE_QUARTZ_SHARD))
+							   .offerTo(exporter);
 		RecipesProvider.offerTwoByTwoCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, RandomMod.PURE_QUARTZ_BLOCK.asItem(), RandomMod.PURE_QUARTZ_SHARD);
 		ShapedRecipeJsonFactory.create(RecipeCategory.REDSTONE, RandomMod.REMEMBERER)
 							   .ingredient('#', Blocks.REDSTONE_TORCH)

@@ -28,5 +28,6 @@ public class ClientEntry implements ClientModInitializer
 
 		BlockRenderLayerMap.put(RenderLayer.getCutout(), RandomMod.PURE_QUARTZ_CLUSTER, RandomMod.LARGE_PURE_QUARTZ_BUD, RandomMod.MEDIUM_PURE_QUARTZ_BUD,
 				RandomMod.SMALL_PURE_QUARTZ_BUD, RandomMod.REMEMBERER);
+		BlockRenderLayerMap.put(RenderLayer.getTranslucent(), RandomMod.REINFORCED_GLASS);
 	}
 }

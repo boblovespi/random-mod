@@ -28,6 +28,7 @@ public class ModelProvider extends FabricModelProvider
 		bsmg.registerAmethyst(RandomMod.LARGE_PURE_QUARTZ_BUD);
 		bsmg.registerAmethyst(RandomMod.MEDIUM_PURE_QUARTZ_BUD);
 		bsmg.registerAmethyst(RandomMod.SMALL_PURE_QUARTZ_BUD);
+		bsmg.registerSimpleCubeAll(RandomMod.REINFORCED_GLASS);
 
 		createRemembererBlockState(bsmg);
 	}
