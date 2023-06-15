@@ -1,0 +1,41 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "boblovespirandommod:item/depth_meter_16"
+	},
+	"overrides": [
+		{ "predicate": { "depth": 0.000000 }, "model": "boblovespirandommod:item/depth_meter" },
+		{ "predicate": { "depth": 0.015625 }, "model": "boblovespirandommod:item/depth_meter_17" },
+		{ "predicate": { "depth": 0.046875 }, "model": "boblovespirandommod:item/depth_meter_18" },
+		{ "predicate": { "depth": 0.078125 }, "model": "boblovespirandommod:item/depth_meter_19" },
+		{ "predicate": { "depth": 0.109375 }, "model": "boblovespirandommod:item/depth_meter_20" },
+		{ "predicate": { "depth": 0.140625 }, "model": "boblovespirandommod:item/depth_meter_21" },
+		{ "predicate": { "depth": 0.171875 }, "model": "boblovespirandommod:item/depth_meter_22" },
+		{ "predicate": { "depth": 0.203125 }, "model": "boblovespirandommod:item/depth_meter_23" },
+		{ "predicate": { "depth": 0.234375 }, "model": "boblovespirandommod:item/depth_meter_24" },
+		{ "predicate": { "depth": 0.265625 }, "model": "boblovespirandommod:item/depth_meter_25" },
+		{ "predicate": { "depth": 0.296875 }, "model": "boblovespirandommod:item/depth_meter_26" },
+		{ "predicate": { "depth": 0.328125 }, "model": "boblovespirandommod:item/depth_meter_27" },
+		{ "predicate": { "depth": 0.359375 }, "model": "boblovespirandommod:item/depth_meter_28" },
+		{ "predicate": { "depth": 0.390625 }, "model": "boblovespirandommod:item/depth_meter_29" },
+		{ "predicate": { "depth": 0.421875 }, "model": "boblovespirandommod:item/depth_meter_30" },
+		{ "predicate": { "depth": 0.453125 }, "model": "boblovespirandommod:item/depth_meter_31" },
+		{ "predicate": { "depth": 0.484375 }, "model": "boblovespirandommod:item/depth_meter_00" },
+		{ "predicate": { "depth": 0.515625 }, "model": "boblovespirandommod:item/depth_meter_01" },
+		{ "predicate": { "depth": 0.546875 }, "model": "boblovespirandommod:item/depth_meter_02" },
+		{ "predicate": { "depth": 0.578125 }, "model": "boblovespirandommod:item/depth_meter_03" },
+		{ "predicate": { "depth": 0.609375 }, "model": "boblovespirandommod:item/depth_meter_04" },
+		{ "predicate": { "depth": 0.640625 }, "model": "boblovespirandommod:item/depth_meter_05" },
+		{ "predicate": { "depth": 0.671875 }, "model": "boblovespirandommod:item/depth_meter_06" },
+		{ "predicate": { "depth": 0.703125 }, "model": "boblovespirandommod:item/depth_meter_07" },
+		{ "predicate": { "depth": 0.734375 }, "model": "boblovespirandommod:item/depth_meter_08" },
+		{ "predicate": { "depth": 0.765625 }, "model": "boblovespirandommod:item/depth_meter_09" },
+		{ "predicate": { "depth": 0.796875 }, "model": "boblovespirandommod:item/depth_meter_10" },
+		{ "predicate": { "depth": 0.828125 }, "model": "boblovespirandommod:item/depth_meter_11" },
+		{ "predicate": { "depth": 0.859375 }, "model": "boblovespirandommod:item/depth_meter_12" },
+		{ "predicate": { "depth": 0.890625 }, "model": "boblovespirandommod:item/depth_meter_13" },
+		{ "predicate": { "depth": 0.921875 }, "model": "boblovespirandommod:item/depth_meter_14" },
+		{ "predicate": { "depth": 0.953125 }, "model": "boblovespirandommod:item/depth_meter_15" },
+		{ "predicate": { "depth": 0.984375 }, "model": "boblovespirandommod:item/depth_meter" }
+	]
+}

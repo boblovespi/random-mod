@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "boblovespirandommod:block/large_pure_quartz_bud"
+  }
+}

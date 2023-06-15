@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "boblovespirandommod:block/small_pure_quartz_bud",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "boblovespirandommod:block/small_pure_quartz_bud",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "boblovespirandommod:block/small_pure_quartz_bud",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "boblovespirandommod:block/small_pure_quartz_bud",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "boblovespirandommod:block/small_pure_quartz_bud"
+    },
+    "facing=west": {
+      "model": "boblovespirandommod:block/small_pure_quartz_bud",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

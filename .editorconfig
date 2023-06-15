@@ -3,7 +3,7 @@ root = true
 [*]
 charset = utf-8
 end_of_line = lf
-insert_final_newline = true
+insert_final_newline = false
 tab_width = 4
 trim_trailing_whitespace = true
 
@@ -15,19 +15,20 @@ indent_style = tab
 
 [*.java]
 indent_style = tab
+max_line_length = 160
 
 [*.json]
-indent_style = space
-indent_size = 2
+indent_style = tab
+indent_size = 4
 
 [quilt.mod.json]
 indent_style = tab
-tab_width = 2
+tab_width = 4
 
 [*.toml]
 indent_style = tab
-tab_width = 2
+tab_width = 4
 
 [*.properties]
-indent_style = space
-indent_size = 2
+indent_style = tab
+indent_size = 4

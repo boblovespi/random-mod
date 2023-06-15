@@ -1,0 +1,22 @@
+{
+	"__comment_1": "items",
+
+	"item.boblovespirandommod.depth_meter": "Depth Meter",
+	"item.boblovespirandommod.bad_apple": "Bad Apple",
+	"item.boblovespirandommod.pure_quartz_shard": "Pure Quartz Shard",
+	"item.boblovespirandommod.quartz_disc": "Quartz Disc",
+
+	"__comment_2": "blocks",
+
+	"block.boblovespirandommod.pegmatite": "Pegmatite",
+	"block.boblovespirandommod.pure_quartz_block": "Pure Quartz Block",
+	"block.boblovespirandommod.budding_pure_quartz": "Budding Pure Quartz",
+	"block.boblovespirandommod.pure_quartz_cluster": "Pure Quartz Cluster",
+	"block.boblovespirandommod.large_pure_quartz_bud": "Large Pure Quartz Bud",
+	"block.boblovespirandommod.medium_pure_quartz_bud": "Medium Pure Quartz Bud",
+	"block.boblovespirandommod.small_pure_quartz_bud": "Small Pure Quartz Bud",
+
+	"__comment_3": "overrides",
+
+	"subtitles.block.amethyst_block.chime": "Crystal chimes"
+}

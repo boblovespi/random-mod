@@ -1,0 +1,11 @@
+  {
+  "parent": "item/amethyst_bud",
+  "textures": {
+    "layer0": "boblovespirandommod:block/large_pure_quartz_bud"
+  },
+  "display": {
+    "fixed": {
+      "translation": [ 0, 4, 0 ]
+    }
+  }
+}

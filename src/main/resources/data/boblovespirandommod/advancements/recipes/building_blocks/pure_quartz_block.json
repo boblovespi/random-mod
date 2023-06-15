@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pure_quartz_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "boblovespirandommod:pure_quartz_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "boblovespirandommod:pure_quartz_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_pure_quartz_shard",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "boblovespirandommod:pure_quartz_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}
