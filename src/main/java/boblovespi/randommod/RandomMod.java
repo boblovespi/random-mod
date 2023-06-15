@@ -1,5 +1,6 @@
 package boblovespi.randommod;
 
+import boblovespi.randommod.common.block.Rememberer;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
 import boblovespi.randommod.common.item.DepthMeter;
 import boblovespi.randommod.common.worldgen.PureQuartzSpikeFeature;
@@ -56,6 +57,8 @@ public class RandomMod implements ModInitializer
 	public static final Block SMALL_PURE_QUARTZ_BUD = block("small_pure_quartz_bud", s -> new AmethystClusterBlock(3, 5, s),
 			QuiltBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).mapColor(MapColor.WOOL));
 
+	public static final Block REMEMBERER = block("rememberer", Rememberer::new, QuiltBlockSettings.copyOf(Blocks.REPEATER));
+
 	// Features
 
 	public static final Feature<DefaultFeatureConfig> PURE_QUARTZ_SPIKE = Registry.register(Registries.FEATURE, new Identifier(MODID, "pure_quartz_spike"),
@@ -91,6 +94,9 @@ public class RandomMod implements ModInitializer
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL_BLOCKS).register(c -> {
 			c.addAfter(Blocks.SMOOTH_BASALT, PEGMATITE);
 			c.addAfter(Blocks.AMETHYST_CLUSTER, PURE_QUARTZ_BLOCK, BUDDING_PURE_QUARTZ, SMALL_PURE_QUARTZ_BUD, MEDIUM_PURE_QUARTZ_BUD, LARGE_PURE_QUARTZ_BUD, PURE_QUARTZ_CLUSTER);
+		});
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(c -> {
+			c.addAfter(Blocks.COMPARATOR, REMEMBERER);
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS_AND_UTILITIES).register(c -> {
 			c.addAfter(Items.CLOCK, DEPTH_METER);

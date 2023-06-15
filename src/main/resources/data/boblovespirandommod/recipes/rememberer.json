@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "minecraft:redstone_torch"
+    },
+    "I": {
+      "item": "minecraft:stone"
+    },
+    "X": {
+      "item": "boblovespirandommod:pure_quartz_shard"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#",
+    "III"
+  ],
+  "result": {
+    "item": "boblovespirandommod:rememberer"
+  },
+  "show_notification": true
+}

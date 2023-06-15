@@ -3,6 +3,7 @@ package boblovespi.randommod.data;
 import boblovespi.randommod.RandomMod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.RecipesProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
@@ -38,5 +39,14 @@ public class RecipeProvider extends FabricRecipeProvider
 							   .criterion("has_netherite", conditionsFromItem(Items.NETHERITE_INGOT))
 							   .offerTo(exporter);
 		RecipesProvider.offerTwoByTwoCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, RandomMod.PURE_QUARTZ_BLOCK.asItem(), RandomMod.PURE_QUARTZ_SHARD);
+		ShapedRecipeJsonFactory.create(RecipeCategory.REDSTONE, RandomMod.REMEMBERER)
+							   .ingredient('#', Blocks.REDSTONE_TORCH)
+							   .ingredient('X', RandomMod.PURE_QUARTZ_SHARD)
+							   .ingredient('I', Blocks.STONE)
+							   .pattern(" # ")
+							   .pattern("#X#")
+							   .pattern("III")
+							   .criterion("has_pure_quartz", conditionsFromItem(RandomMod.PURE_QUARTZ_SHARD))
+							   .offerTo(exporter);
 	}
 }
