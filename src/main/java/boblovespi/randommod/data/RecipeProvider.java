@@ -56,5 +56,17 @@ public class RecipeProvider extends FabricRecipeProvider
 							   .pattern("III")
 							   .criterion("has_pure_quartz", conditionsFromItem(RandomMod.PURE_QUARTZ_SHARD))
 							   .offerTo(exporter);
+
+		// we are a furniture mod
+		ShapedRecipeJsonFactory.create(RecipeCategory.DECORATIONS, RandomMod.COPPER_SINK)
+							   .ingredient('c', Blocks.CALCITE)
+							   .ingredient('l', Blocks.STRIPPED_DARK_OAK_LOG)
+							   .ingredient('*', Items.COPPER_INGOT)
+							   .ingredient('#', Blocks.COPPER_BLOCK)
+							   .pattern("c*c")
+							   .pattern("l#l")
+							   .pattern("lll")
+							   .criterion("has_copper", conditionsFromItem(Items.COPPER_INGOT))
+							   .offerTo(exporter);
 	}
 }

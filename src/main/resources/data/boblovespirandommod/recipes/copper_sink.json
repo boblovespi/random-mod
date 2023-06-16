@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:copper_block"
+    },
+    "*": {
+      "item": "minecraft:copper_ingot"
+    },
+    "c": {
+      "item": "minecraft:calcite"
+    },
+    "l": {
+      "item": "minecraft:stripped_dark_oak_log"
+    }
+  },
+  "pattern": [
+    "c*c",
+    "l#l",
+    "lll"
+  ],
+  "result": {
+    "item": "boblovespirandommod:copper_sink"
+  },
+  "show_notification": true
+}

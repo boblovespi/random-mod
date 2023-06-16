@@ -1,5 +1,6 @@
 package boblovespi.randommod;
 
+import boblovespi.randommod.common.block.CopperSink;
 import boblovespi.randommod.common.block.Rememberer;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
 import boblovespi.randommod.common.item.DepthMeter;
@@ -59,6 +60,8 @@ public class RandomMod implements ModInitializer
 	public static final Block REINFORCED_GLASS = block("reinforced_glass", GlassBlock::new, QuiltBlockSettings.copyOf(Blocks.TINTED_GLASS).strength(10, 100));
 
 	public static final Block REMEMBERER = block("rememberer", Rememberer::new, QuiltBlockSettings.copyOf(Blocks.REPEATER));
+
+	public static final Block COPPER_SINK = block("copper_sink", CopperSink::new, QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK));
 
 	// Features
 

@@ -1,6 +1,8 @@
 package boblovespi.randommod.client;
 
 import boblovespi.randommod.RandomMod;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
@@ -27,7 +29,10 @@ public class ClientEntry implements ClientModInitializer
 		});
 
 		BlockRenderLayerMap.put(RenderLayer.getCutout(), RandomMod.PURE_QUARTZ_CLUSTER, RandomMod.LARGE_PURE_QUARTZ_BUD, RandomMod.MEDIUM_PURE_QUARTZ_BUD,
-				RandomMod.SMALL_PURE_QUARTZ_BUD, RandomMod.REMEMBERER);
+				RandomMod.SMALL_PURE_QUARTZ_BUD, RandomMod.REMEMBERER, RandomMod.COPPER_SINK);
 		BlockRenderLayerMap.put(RenderLayer.getTranslucent(), RandomMod.REINFORCED_GLASS);
+
+		ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> view != null && pos != null ? BiomeColors.getWaterColor(view, pos) : -1,
+				RandomMod.COPPER_SINK);
 	}
 }

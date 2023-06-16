@@ -1,0 +1,48 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/copper_sink",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/copper_sink",
+        "y": 0
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/copper_sink",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/copper_sink",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/copper_sink_water"
+      },
+      "when": {
+        "filled": "true"
+      }
+    }
+  ]
+}

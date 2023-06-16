@@ -1,6 +1,7 @@
 package boblovespi.randommod.data;
 
 import boblovespi.randommod.RandomMod;
+import boblovespi.randommod.common.block.CopperSink;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.ItemModelGenerator;
@@ -31,6 +32,7 @@ public class ModelProvider extends FabricModelProvider
 		bsmg.registerSimpleCubeAll(RandomMod.REINFORCED_GLASS);
 
 		createRemembererBlockState(bsmg);
+		createCopperSinkBlockState(bsmg);
 	}
 
 	@Override
@@ -67,5 +69,23 @@ public class ModelProvider extends FabricModelProvider
 			states.with(When.allOf(rotCon, writeOn), BlockStateVariant.create().put(VariantSettings.MODEL, wOn).put(VariantSettings.Y, rotation));
 		});
 		bsmg.blockStateCollector.accept(states);
+	}
+
+	private void createCopperSinkBlockState(BlockStateModelGenerator bmsg)
+	{
+		var states = MultipartBlockStateSupplier.create(RandomMod.COPPER_SINK);
+		var sinkId = new Identifier(RandomMod.MODID, "block/copper_sink");
+		var waterId = new Identifier(RandomMod.MODID, "block/copper_sink_water");
+		bmsg.registerParentedItemModel(RandomMod.COPPER_SINK, sinkId);
+		Map.of(Direction.NORTH, VariantSettings.Rotation.R0,
+				Direction.EAST, VariantSettings.Rotation.R90,
+				Direction.SOUTH, VariantSettings.Rotation.R180,
+				Direction.WEST, VariantSettings.Rotation.R270).forEach((direction, rotation) ->
+		{
+			var rotCon = When.create().set(Properties.HORIZONTAL_FACING, direction);
+			states.with(rotCon, BlockStateVariant.create().put(VariantSettings.MODEL, sinkId).put(VariantSettings.Y, rotation));
+		});
+		states.with(When.create().set(CopperSink.FILLED, true), BlockStateVariant.create().put(VariantSettings.MODEL, waterId));
+		bmsg.blockStateCollector.accept(states);
 	}
 }

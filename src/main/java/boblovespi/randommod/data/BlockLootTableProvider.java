@@ -36,5 +36,7 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 		addDropWithSilkTouch(RandomMod.SMALL_PURE_QUARTZ_BUD);
 		addDropWithSilkTouch(RandomMod.MEDIUM_PURE_QUARTZ_BUD);
 		addDropWithSilkTouch(RandomMod.LARGE_PURE_QUARTZ_BUD);
+
+		addDrop(RandomMod.COPPER_SINK);
 	}
 }
