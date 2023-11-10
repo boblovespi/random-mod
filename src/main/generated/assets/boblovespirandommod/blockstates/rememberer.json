@@ -3,6 +3,134 @@
     {
       "apply": {
         "model": "boblovespirandommod:block/rememberer",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "power": "0"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer_high",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "power": "!0"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer_write_off",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "powered": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer_write_on",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "powered": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "power": "0"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer_high",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "power": "!0"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer_write_off",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "powered": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer_write_on",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "powered": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/rememberer",
         "y": 0
       },
       "when": {
@@ -121,134 +249,6 @@
         "AND": [
           {
             "facing": "north"
-          },
-          {
-            "powered": "true"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer",
-        "y": 90
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "west"
-          },
-          {
-            "power": "0"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer_high",
-        "y": 90
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "west"
-          },
-          {
-            "power": "!0"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer_write_off",
-        "y": 90
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "west"
-          },
-          {
-            "powered": "false"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer_write_on",
-        "y": 90
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "west"
-          },
-          {
-            "powered": "true"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer",
-        "y": 270
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "east"
-          },
-          {
-            "power": "0"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer_high",
-        "y": 270
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "east"
-          },
-          {
-            "power": "!0"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer_write_off",
-        "y": 270
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "east"
-          },
-          {
-            "powered": "false"
-          }
-        ]
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/rememberer_write_on",
-        "y": 270
-      },
-      "when": {
-        "AND": [
-          {
-            "facing": "east"
           },
           {
             "powered": "true"

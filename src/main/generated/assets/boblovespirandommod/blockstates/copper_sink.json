@@ -3,19 +3,10 @@
     {
       "apply": {
         "model": "boblovespirandommod:block/copper_sink",
-        "y": 180
+        "y": 90
       },
       "when": {
-        "facing": "south"
-      }
-    },
-    {
-      "apply": {
-        "model": "boblovespirandommod:block/copper_sink",
-        "y": 0
-      },
-      "when": {
-        "facing": "north"
+        "facing": "east"
       }
     },
     {
@@ -30,10 +21,19 @@
     {
       "apply": {
         "model": "boblovespirandommod:block/copper_sink",
-        "y": 90
+        "y": 180
       },
       "when": {
-        "facing": "east"
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/copper_sink",
+        "y": 0
+      },
+      "when": {
+        "facing": "north"
       }
     },
     {
