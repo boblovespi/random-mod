@@ -4,10 +4,14 @@ import boblovespi.randommod.common.block.CopperSink;
 import boblovespi.randommod.common.block.Rememberer;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
 import boblovespi.randommod.common.item.DepthMeter;
+import boblovespi.randommod.common.recipe.BrewingRecipes;
 import boblovespi.randommod.common.worldgen.PureQuartzSpikeFeature;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.potion.Potion;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -41,6 +45,7 @@ public class RandomMod implements ModInitializer
 	public static final Item BAD_APPLE = item("bad_apple", Item::new, new Item.Settings().food(FoodComponents.APPLE));
 	public static final Item PURE_QUARTZ_SHARD = item("pure_quartz_shard", Item::new, new Item.Settings());
 	public static final Item QUARTZ_DISC = item("quartz_disc", Item::new, new Item.Settings().maxCount(1).rarity(Rarity.RARE));
+	public static final Item GLEAMING_BERRIES = item("gleaming_berries", Item::new, new Item.Settings());
 
 	// Blocks
 
@@ -68,6 +73,20 @@ public class RandomMod implements ModInitializer
 	public static final Feature<DefaultFeatureConfig> PURE_QUARTZ_SPIKE = Registry.register(Registries.FEATURE, new Identifier(MODID, "pure_quartz_spike"),
 			new PureQuartzSpikeFeature(DefaultFeatureConfig.CODEC));
 
+	// Potions
+
+	public static final Potion LEVITATION = potion("levitation", new Potion("levitation", new StatusEffectInstance(StatusEffects.LEVITATION, 20 * 45)));
+	public static final Potion LONG_LEVITATION = potion("long_levitation",
+			new Potion("levitation", new StatusEffectInstance(StatusEffects.LEVITATION, 20 * 90)));
+	public static final Potion STRONG_LEVITATION = potion("strong_levitation",
+			new Potion("levitation", new StatusEffectInstance(StatusEffects.LEVITATION, 20 * 22, 1)));
+
+	public static final Potion NAUSEA = potion("nausea", new Potion("nausea", new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 60 * 3)));
+	public static final Potion LONG_NAUSEA = potion("long_nausea", new Potion("nausea", new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 60 * 8)));
+
+	public static final Potion GLOWING = potion("glowing", new Potion("glowing", new StatusEffectInstance(StatusEffects.GLOWING, 20 * 60 * 3)));
+	public static final Potion LONG_GLOWING = potion("long_glowing", new Potion("glowing", new StatusEffectInstance(StatusEffects.GLOWING, 20 * 60 * 8)));
+
 	public static final RegistryKey<PlacedFeature> PURE_QUARTZ_SPIKE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE,
 			new Identifier(MODID, "pure_quartz_spike"));
 
@@ -81,6 +100,11 @@ public class RandomMod implements ModInitializer
 		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
 		item(name, s -> new BlockItem(block, s), new Item.Settings());
 		return block;
+	}
+
+	private static Potion potion(String name, Potion potion)
+	{
+		return Registry.register(Registries.POTION, new Identifier(MODID, name), potion);
 	}
 
 	@SuppressWarnings("UnstableApiUsage")
@@ -100,7 +124,8 @@ public class RandomMod implements ModInitializer
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL_BLOCKS).register(c -> {
 			c.addAfter(Blocks.SMOOTH_BASALT, PEGMATITE);
-			c.addAfter(Blocks.AMETHYST_CLUSTER, PURE_QUARTZ_BLOCK, BUDDING_PURE_QUARTZ, SMALL_PURE_QUARTZ_BUD, MEDIUM_PURE_QUARTZ_BUD, LARGE_PURE_QUARTZ_BUD, PURE_QUARTZ_CLUSTER);
+			c.addAfter(Blocks.AMETHYST_CLUSTER, PURE_QUARTZ_BLOCK, BUDDING_PURE_QUARTZ, SMALL_PURE_QUARTZ_BUD, MEDIUM_PURE_QUARTZ_BUD, LARGE_PURE_QUARTZ_BUD,
+					PURE_QUARTZ_CLUSTER);
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(c -> {
 			c.addAfter(Blocks.COMPARATOR, REMEMBERER);
@@ -114,6 +139,10 @@ public class RandomMod implements ModInitializer
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(c -> {
 			c.addAfter(Items.AMETHYST_SHARD, PURE_QUARTZ_SHARD);
+			c.addAfter(Items.GLISTERING_MELON_SLICE, GLEAMING_BERRIES);
 		});
+
+		LOGGER.debug("Adding brewing recipes...");
+		BrewingRecipes.addRecipes();
 	}
 }

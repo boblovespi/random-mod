@@ -5,6 +5,17 @@
 	"item.boblovespirandommod.bad_apple": "Bad Apple",
 	"item.boblovespirandommod.pure_quartz_shard": "Pure Quartz Shard",
 	"item.boblovespirandommod.quartz_disc": "Quartz Disc",
+	"item.boblovespirandommod.gleaming_berries": "Gleaming Berries",
+
+	"item.minecraft.tipped_arrow.effect.nausea": "Arrow of Nausea",
+	"item.minecraft.potion.effect.nausea": "Potion of Nausea",
+	"item.minecraft.splash_potion.effect.nausea": "Splash Potion of Nausea",
+	"item.minecraft.lingering_potion.effect.nausea": "Lingering Potion of Nausea",
+
+	"item.minecraft.tipped_arrow.effect.glowing": "Arrow of Glowing",
+	"item.minecraft.potion.effect.glowing": "Potion of Glowing",
+	"item.minecraft.splash_potion.effect.glowing": "Splash Potion of Glowing",
+	"item.minecraft.lingering_potion.effect.glowing": "Lingering Potion of Glowing",
 
 	"__comment_2": "blocks",
 

@@ -1,8 +1,10 @@
-// 1.20	2023-11-09T22:41:03.7891892	Random Mod/Recipes
+// 1.20	2023-11-10T01:03:19.01609	Random Mod/Recipes
 a9ad1dfa7b7d53967a045f8b9e81ec3ad4f656b1 data\boblovespirandommod\recipes\reinforced_glass.json
-83ff8127c8259311558feeedd89393c49d64f659 data\boblovespirandommod\advancements\recipes\tools\depth_meter.json
 c77718c7435c343df3f031daa52dccd410ef61e9 data\boblovespirandommod\recipes\pure_quartz_block.json
+83ff8127c8259311558feeedd89393c49d64f659 data\boblovespirandommod\advancements\recipes\tools\depth_meter.json
 b08cb609b6a64d75b273ceac9c2cc951a2f0748e data\boblovespirandommod\recipes\copper_sink.json
+75c86eb9dcd4666b39b1058607b5c082410a1e99 data\boblovespirandommod\recipes\gleaming_berries.json
+1ffd19ea0ff7bb87feea2cecf06270d520fd2cd7 data\boblovespirandommod\advancements\recipes\brewing\gleaming_berries.json
 5d68b7fb10d4537bba6e1ec4a089a6da2bd773b5 data\boblovespirandommod\advancements\recipes\misc\quartz_disc.json
 85d8fbd828d3ef29cb651501a6f247dfdc436311 data\boblovespirandommod\recipes\rememberer.json
 e545dcddfac755f8703e631fb68354f27f7c171b data\boblovespirandommod\recipes\quartz_disc.json

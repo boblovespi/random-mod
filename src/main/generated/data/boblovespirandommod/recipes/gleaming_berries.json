@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "minecraft:glow_berries"
+    },
+    "n": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "pattern": [
+    "nnn",
+    "nbn",
+    "nnn"
+  ],
+  "result": {
+    "item": "boblovespirandommod:gleaming_berries"
+  },
+  "show_notification": true
+}
