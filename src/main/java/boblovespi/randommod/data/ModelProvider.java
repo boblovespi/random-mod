@@ -1,6 +1,7 @@
 package boblovespi.randommod.data;
 
 import boblovespi.randommod.RandomMod;
+import boblovespi.randommod.common.block.CopperKettle;
 import boblovespi.randommod.common.block.CopperSink;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -33,6 +34,7 @@ public class ModelProvider extends FabricModelProvider
 
 		createRemembererBlockState(bsmg);
 		createCopperSinkBlockState(bsmg);
+		createCopperKettleBlockState(bsmg);
 	}
 
 	@Override
@@ -72,12 +74,12 @@ public class ModelProvider extends FabricModelProvider
 		bsmg.blockStateCollector.accept(states);
 	}
 
-	private void createCopperSinkBlockState(BlockStateModelGenerator bmsg)
+	private void createCopperSinkBlockState(BlockStateModelGenerator bsmg)
 	{
 		var states = MultipartBlockStateSupplier.create(RandomMod.COPPER_SINK);
 		var sinkId = new Identifier(RandomMod.MODID, "block/copper_sink");
 		var waterId = new Identifier(RandomMod.MODID, "block/copper_sink_water");
-		bmsg.registerParentedItemModel(RandomMod.COPPER_SINK, sinkId);
+		bsmg.registerParentedItemModel(RandomMod.COPPER_SINK, sinkId);
 		Map.of(Direction.NORTH, VariantSettings.Rotation.R0,
 				Direction.EAST, VariantSettings.Rotation.R90,
 				Direction.SOUTH, VariantSettings.Rotation.R180,
@@ -87,6 +89,24 @@ public class ModelProvider extends FabricModelProvider
 			states.with(rotCon, BlockStateVariant.create().put(VariantSettings.MODEL, sinkId).put(VariantSettings.Y, rotation));
 		});
 		states.with(When.create().set(CopperSink.FILLED, true), BlockStateVariant.create().put(VariantSettings.MODEL, waterId));
-		bmsg.blockStateCollector.accept(states);
+		bsmg.blockStateCollector.accept(states);
+	}
+
+	private void createCopperKettleBlockState(BlockStateModelGenerator bsmg)
+	{
+		var states = MultipartBlockStateSupplier.create(RandomMod.COPPER_KETTLE);
+		var kettleId = new Identifier(RandomMod.MODID, "block/copper_kettle");
+		var legsId = new Identifier(RandomMod.MODID, "block/copper_kettle_legs");
+		bsmg.registerParentedItemModel(RandomMod.COPPER_KETTLE, kettleId);
+		Map.of(Direction.NORTH, VariantSettings.Rotation.R0,
+				Direction.EAST, VariantSettings.Rotation.R90,
+				Direction.SOUTH, VariantSettings.Rotation.R180,
+				Direction.WEST, VariantSettings.Rotation.R270).forEach((direction, rotation) ->
+		{
+			var rotCon = When.create().set(Properties.HORIZONTAL_FACING, direction);
+			states.with(rotCon, BlockStateVariant.create().put(VariantSettings.MODEL, kettleId).put(VariantSettings.Y, rotation));
+		});
+		states.with(When.create().set(CopperKettle.LEGS, true), BlockStateVariant.create().put(VariantSettings.MODEL, legsId));
+		bsmg.blockStateCollector.accept(states);
 	}
 }

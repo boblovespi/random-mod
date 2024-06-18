@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "boblovespirandommod:block/copper_sink",
+        "model": "boblovespirandommod:block/copper_kettle",
         "y": 270
       },
       "when": {
@@ -11,7 +11,7 @@
     },
     {
       "apply": {
-        "model": "boblovespirandommod:block/copper_sink",
+        "model": "boblovespirandommod:block/copper_kettle",
         "y": 0
       },
       "when": {
@@ -20,7 +20,7 @@
     },
     {
       "apply": {
-        "model": "boblovespirandommod:block/copper_sink",
+        "model": "boblovespirandommod:block/copper_kettle",
         "y": 90
       },
       "when": {
@@ -29,7 +29,7 @@
     },
     {
       "apply": {
-        "model": "boblovespirandommod:block/copper_sink",
+        "model": "boblovespirandommod:block/copper_kettle",
         "y": 180
       },
       "when": {
@@ -38,10 +38,10 @@
     },
     {
       "apply": {
-        "model": "boblovespirandommod:block/copper_sink_water"
+        "model": "boblovespirandommod:block/copper_kettle_legs"
       },
       "when": {
-        "filled": "true"
+        "legs": "true"
       }
     }
   ]

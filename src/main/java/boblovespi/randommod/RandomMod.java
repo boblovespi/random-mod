@@ -1,13 +1,16 @@
 package boblovespi.randommod;
 
+import boblovespi.randommod.common.block.CopperKettle;
 import boblovespi.randommod.common.block.CopperSink;
 import boblovespi.randommod.common.block.Rememberer;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
+import boblovespi.randommod.common.item.CopperKettleItem;
 import boblovespi.randommod.common.item.DepthMeter;
 import boblovespi.randommod.common.recipe.BrewingRecipes;
 import boblovespi.randommod.common.worldgen.PureQuartzSpikeFeature;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
@@ -32,6 +35,7 @@ import org.quiltmc.qsl.worldgen.biome.api.BiomeSelectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class RandomMod implements ModInitializer
@@ -68,6 +72,9 @@ public class RandomMod implements ModInitializer
 
 	public static final Block COPPER_SINK = block("copper_sink", CopperSink::new, QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK));
 
+	public static final Block COPPER_KETTLE = block("copper_kettle", CopperKettle::new, CopperKettleItem::new,
+			QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
+
 	// Features
 
 	public static final Feature<DefaultFeatureConfig> PURE_QUARTZ_SPIKE = Registry.register(Registries.FEATURE, new Identifier(MODID, "pure_quartz_spike"),
@@ -99,6 +106,13 @@ public class RandomMod implements ModInitializer
 	{
 		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
 		item(name, s -> new BlockItem(block, s), new Item.Settings());
+		return block;
+	}
+
+	private static <T extends AbstractBlock.Settings, B extends Block> B block(String name, Function<T, B> blockProvider, BiFunction<B, Item.Settings, BlockItem> blockItemProvider, T settings)
+	{
+		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
+		item(name, s -> blockItemProvider.apply(block, s), new Item.Settings());
 		return block;
 	}
 

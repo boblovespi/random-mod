@@ -30,6 +30,12 @@
 	"block.boblovespirandommod.rememberer": "Redstone Rememberer",
 	"block.boblovespirandommod.copper_sink": "Copper Sink",
 
+	"block.boblovespirandommod.copper_kettle": "Copper Kettle",
+
+	"block.boblovespirandommod.copper_kettle.empty": "Empty",
+	"block.boblovespirandommod.copper_kettle.filled": "Water",
+	"block.boblovespirandommod.copper_kettle.boiling": "Boiling Water",
+
 	"__comment_3": "overrides",
 
 	"subtitles.block.amethyst_block.chime": "Crystal chimes"

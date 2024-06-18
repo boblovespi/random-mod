@@ -29,7 +29,7 @@ public class ClientEntry implements ClientModInitializer
 		});
 
 		BlockRenderLayerMap.put(RenderLayer.getCutout(), RandomMod.PURE_QUARTZ_CLUSTER, RandomMod.LARGE_PURE_QUARTZ_BUD, RandomMod.MEDIUM_PURE_QUARTZ_BUD,
-				RandomMod.SMALL_PURE_QUARTZ_BUD, RandomMod.REMEMBERER, RandomMod.COPPER_SINK);
+				RandomMod.SMALL_PURE_QUARTZ_BUD, RandomMod.REMEMBERER, RandomMod.COPPER_SINK, RandomMod.COPPER_KETTLE);
 		BlockRenderLayerMap.put(RenderLayer.getTranslucent(), RandomMod.REINFORCED_GLASS);
 
 		ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> view != null && pos != null ? BiomeColors.getWaterColor(view, pos) : -1,

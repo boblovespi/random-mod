@@ -1,14 +1,22 @@
 package boblovespi.randommod.data;
 
 import boblovespi.randommod.RandomMod;
+import boblovespi.randommod.common.block.CopperKettle;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.function.SetNbtLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.tag.ItemTags;
 
@@ -38,5 +46,22 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 		addDropWithSilkTouch(RandomMod.LARGE_PURE_QUARTZ_BUD);
 
 		addDrop(RandomMod.COPPER_SINK);
+
+		add(RandomMod.COPPER_KETTLE, block -> kettleDrop(RandomMod.COPPER_KETTLE));
+	}
+
+	private LootTable.Builder kettleDrop(Block drop)
+	{
+		return LootTable.builder().pool(
+				LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(
+						applyExplosionDecay(
+								drop, ItemEntry.builder(drop).apply(
+										CopperKettle.Contents.values(), c -> {
+											var nbt = new NbtCompound();
+											nbt.putString("contents", c.asString());
+											return SetNbtLootFunction.builder(nbt).conditionally(
+													BlockStatePropertyLootCondition.builder(drop).properties(
+															StatePredicate.Builder.create().exactMatch(CopperKettle.CONTENTS, c.asString())));
+										}))));
 	}
 }
