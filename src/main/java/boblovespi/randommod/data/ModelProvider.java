@@ -45,6 +45,8 @@ public class ModelProvider extends FabricModelProvider
 		itemModelGenerator.register(RandomMod.PURE_QUARTZ_SHARD, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.QUARTZ_DISC, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.GLEAMING_BERRIES, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(RandomMod.TEA_LEAF, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(RandomMod.TEA_BUSH_CROP.asItem(), Models.SINGLE_LAYER_ITEM);
 	}
 
 	private void createRemembererBlockState(BlockStateModelGenerator bsmg)

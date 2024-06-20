@@ -3,17 +3,21 @@ package boblovespi.randommod;
 import boblovespi.randommod.common.block.CopperKettle;
 import boblovespi.randommod.common.block.CopperSink;
 import boblovespi.randommod.common.block.Rememberer;
+import boblovespi.randommod.common.block.TeaBushCrop;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
 import boblovespi.randommod.common.item.CopperKettleItem;
 import boblovespi.randommod.common.item.DepthMeter;
 import boblovespi.randommod.common.recipe.BrewingRecipes;
 import boblovespi.randommod.common.worldgen.PureQuartzSpikeFeature;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.potion.Potion;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -51,6 +55,8 @@ public class RandomMod implements ModInitializer
 	public static final Item QUARTZ_DISC = item("quartz_disc", Item::new, new Item.Settings().maxCount(1).rarity(Rarity.RARE));
 	public static final Item GLEAMING_BERRIES = item("gleaming_berries", Item::new, new Item.Settings());
 
+	public static final Item TEA_LEAF = item("tea_leaf", Item::new, new Item.Settings());
+
 	// Blocks
 
 	public static final Block PEGMATITE = block("pegmatite", Block::new, QuiltBlockSettings.copyOf(Blocks.SMOOTH_BASALT));
@@ -74,6 +80,8 @@ public class RandomMod implements ModInitializer
 
 	public static final Block COPPER_KETTLE = block("copper_kettle", CopperKettle::new, CopperKettleItem::new,
 			QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
+
+	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT));
 
 	// Features
 
@@ -109,7 +117,15 @@ public class RandomMod implements ModInitializer
 		return block;
 	}
 
-	private static <T extends AbstractBlock.Settings, B extends Block> B block(String name, Function<T, B> blockProvider, BiFunction<B, Item.Settings, BlockItem> blockItemProvider, T settings)
+	private static <T extends AbstractBlock.Settings> Block block(String name, String itemName, Function<T, Block> blockProvider, T settings)
+	{
+		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
+		item(itemName, s -> new AliasedBlockItem(block, s), new Item.Settings());
+		return block;
+	}
+
+	private static <T extends AbstractBlock.Settings, B extends Block> B block(String name, Function<T, B> blockProvider,
+																			   BiFunction<B, Item.Settings, BlockItem> blockItemProvider, T settings)
 	{
 		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
 		item(name, s -> blockItemProvider.apply(block, s), new Item.Settings());
@@ -158,5 +174,11 @@ public class RandomMod implements ModInitializer
 
 		LOGGER.debug("Adding brewing recipes...");
 		BrewingRecipes.addRecipes();
+
+		LOGGER.debug("Modifying loot tables...");
+		LootTableEvents.MODIFY.register((r, l, n, t, s) -> {
+			if (LootTables.SNIFFER_DIGGING_GAMEPLAY.equals(n))
+				t.modifyPools(p -> p.with(ItemEntry.builder(TEA_BUSH_CROP)));
+		});
 	}
 }

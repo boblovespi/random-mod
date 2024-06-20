@@ -161,15 +161,13 @@ public class CopperKettle extends HorizontalFacingBlock
 		if (state.get(CONTENTS) == Contents.BOILING)
 		{
 			float f = random.nextFloat();
-			// TODO: custom particles
 			world.addParticle(ParticleTypes.CLOUD, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, 0.0, 0.1, 0.0);
-			if (f < 0.17F)
+			if (f < 0.4f)
 			{
 				// TODO: custom sounds
 				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_SMOKER_SMOKE, SoundCategory.BLOCKS,
 						1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
 			}
-
 		}
 	}
 

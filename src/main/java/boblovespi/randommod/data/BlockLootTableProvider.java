@@ -2,6 +2,7 @@ package boblovespi.randommod.data;
 
 import boblovespi.randommod.RandomMod;
 import boblovespi.randommod.common.block.CopperKettle;
+import boblovespi.randommod.common.block.TeaBushCrop;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
@@ -48,6 +49,9 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 		addDrop(RandomMod.COPPER_SINK);
 
 		add(RandomMod.COPPER_KETTLE, block -> kettleDrop(RandomMod.COPPER_KETTLE));
+
+		add(RandomMod.TEA_BUSH_CROP, block -> cropDrops(block, RandomMod.TEA_LEAF, RandomMod.TEA_BUSH_CROP.asItem(),
+				BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(TeaBushCrop.AGE, 3))));
 	}
 
 	private LootTable.Builder kettleDrop(Block drop)
