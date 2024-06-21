@@ -1,9 +1,6 @@
 package boblovespi.randommod;
 
-import boblovespi.randommod.common.block.CopperKettle;
-import boblovespi.randommod.common.block.CopperSink;
-import boblovespi.randommod.common.block.Rememberer;
-import boblovespi.randommod.common.block.TeaBushCrop;
+import boblovespi.randommod.common.block.*;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
 import boblovespi.randommod.common.item.CopperKettleItem;
 import boblovespi.randommod.common.item.DepthMeter;
@@ -81,7 +78,8 @@ public class RandomMod implements ModInitializer
 	public static final Block COPPER_KETTLE = block("copper_kettle", CopperKettle::new, CopperKettleItem::new,
 			QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
 
-	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT));
+	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT)); // TODO: make model + texture
+	public static final Block TEA_BUSH = block("tea_bush", TeaBush::new, QuiltBlockSettings.copyOf(Blocks.AZALEA));
 
 	// Features
 

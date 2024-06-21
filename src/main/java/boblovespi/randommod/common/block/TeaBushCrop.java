@@ -1,5 +1,6 @@
 package boblovespi.randommod.common.block;
 
+import boblovespi.randommod.RandomMod;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
@@ -45,17 +46,14 @@ public class TeaBushCrop extends CropBlock
 	@Override
 	public BlockState withAge(int age)
 	{
-		// TODO: replace torchflower with tea bush sapling
-		return age == 2 ? Blocks.TORCHFLOWER.getDefaultState() : super.withAge(age);
+		return age == 2 ? RandomMod.TEA_BUSH.getDefaultState().with(TeaBush.AGE, 0) : super.withAge(age);
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, RandomGenerator random)
 	{
 		if (random.nextInt(3) != 0)
-		{
 			super.randomTick(state, world, pos, random);
-		}
 	}
 
 	@Override
