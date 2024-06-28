@@ -79,7 +79,7 @@ public class RandomMod implements ModInitializer
 			QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
 
 	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT)); // TODO: make model + texture
-	public static final Block TEA_BUSH = block("tea_bush", TeaBush::new, QuiltBlockSettings.copyOf(Blocks.AZALEA));
+	public static final Block TEA_BUSH = block("tea_bush", TeaBush::new, QuiltBlockSettings.copyOf(Blocks.AZALEA).noCollision());
 
 	// Features
 

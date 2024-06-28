@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "boblovespirandommod:block/pure_quartz_cluster"
-  }
-}

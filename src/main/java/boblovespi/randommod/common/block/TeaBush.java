@@ -26,7 +26,7 @@ import net.minecraft.world.event.GameEvent;
 public class TeaBush extends PlantBlock implements Fertilizable
 {
 	public static final IntProperty AGE = Properties.AGE_3;
-	private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3, 0, 3, 13, 8, 13);
+	private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(2, 0, 2, 14, 12, 14);
 	private static final VoxelShape LARGE_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 16, 16);
 
 	public TeaBush(AbstractBlock.Settings settings)
@@ -78,7 +78,7 @@ public class TeaBush extends PlantBlock implements Fertilizable
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, RandomGenerator random)
 	{
 		int i = state.get(AGE);
-		if (i < 3 && random.nextInt(5) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 9)
+		if (i > 0 && i < 3 && random.nextInt(5) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 9 && hasSpace(world, pos))
 		{
 			BlockState blockState = state.with(AGE, i + 1);
 			world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
@@ -89,18 +89,20 @@ public class TeaBush extends PlantBlock implements Fertilizable
 	@Override
 	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient)
 	{
-		return state.get(AGE) < 3 && state.get(AGE) > 0 && hasSpace(world, pos);
+		return state.get(AGE) < 3 && state.get(AGE) > 0 /*&& hasSpace(world, pos)*/;
 	}
 
 	@Override
 	public boolean canGrow(World world, RandomGenerator random, BlockPos pos, BlockState state)
 	{
-		return state.get(AGE) > 0 && hasSpace(world, pos);
+		return state.get(AGE) > 0 /*&& hasSpace(world, pos)*/;
 	}
 
 	@Override
 	public void grow(ServerWorld world, RandomGenerator random, BlockPos pos, BlockState state)
 	{
+		if (!hasSpace(world, pos))
+			return;
 		int i = Math.min(3, state.get(AGE) + 1);
 		world.setBlockState(pos, state.with(AGE, i), Block.NOTIFY_LISTENERS);
 	}

@@ -65,7 +65,7 @@ public class TeaBushCrop extends CropBlock
 	@Override
 	protected ItemConvertible getSeedsItem()
 	{
-		return Items.TORCHFLOWER_SEEDS;
+		return RandomMod.TEA_BUSH_CROP;
 	}
 
 	@Override

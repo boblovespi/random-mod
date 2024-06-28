@@ -1,0 +1,28 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/tea_bush"
+      },
+      "when": {
+        "age": "2|3"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/tea_bush_extra_leaves"
+      },
+      "when": {
+        "age": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/tea_bush_small"
+      },
+      "when": {
+        "age": "0|1"
+      }
+    }
+  ]
+}
