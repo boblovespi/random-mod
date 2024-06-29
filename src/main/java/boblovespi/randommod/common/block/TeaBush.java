@@ -58,7 +58,7 @@ public class TeaBush extends PlantBlock implements Fertilizable
 		{
 			int dropCount = 1 + world.random.nextInt(2);
 			dropStack(world, pos, new ItemStack(RandomMod.TEA_LEAF, dropCount));
-			world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F); // TODO: change sound
 			BlockState blockState = state.with(AGE, 2);
 			world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
 			world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.create(player, blockState));

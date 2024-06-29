@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "boblovespirandommod:block/tea_bush_crop_stage2"
+  }
+}

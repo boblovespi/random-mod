@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "boblovespirandommod:block/tea_bush_crop_stage0"
+    },
+    "age=1": {
+      "model": "boblovespirandommod:block/tea_bush_crop_stage1"
+    },
+    "age=2": {
+      "model": "boblovespirandommod:block/tea_bush_crop_stage2"
+    }
+  }
+}

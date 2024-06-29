@@ -3,7 +3,6 @@ package boblovespi.randommod.common.block;
 import boblovespi.randommod.RandomMod;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -16,9 +15,10 @@ import net.minecraft.world.World;
 
 public class TeaBushCrop extends CropBlock
 {
-	public static final IntProperty AGE = Properties.AGE_1;
-	private static final VoxelShape[] SHAPE = new VoxelShape[] {Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 6.0, 11.0), Block.createCuboidShape(5.0, 0.0, 5.0,
-			11.0, 10.0, 11.0)};
+	public static final IntProperty AGE = Properties.AGE_2;
+	private static final VoxelShape[] SHAPE = new VoxelShape[] {Block.createCuboidShape(6, 0, 6, 10, 5, 10),
+			Block.createCuboidShape(4, 0, 4, 12, 8, 12),
+			Block.createCuboidShape(2, 0.0, 2, 14, 10, 14)};
 
 	public TeaBushCrop(AbstractBlock.Settings settings)
 	{
@@ -40,13 +40,13 @@ public class TeaBushCrop extends CropBlock
 	@Override
 	public int getMaxAge()
 	{
-		return 2;
+		return 3;
 	}
 
 	@Override
 	public BlockState withAge(int age)
 	{
-		return age == 2 ? RandomMod.TEA_BUSH.getDefaultState().with(TeaBush.AGE, 0) : super.withAge(age);
+		return age == 3 ? RandomMod.TEA_BUSH.getDefaultState().with(TeaBush.AGE, 0) : super.withAge(age);
 	}
 
 	@Override
