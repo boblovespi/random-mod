@@ -1,5 +1,6 @@
 package boblovespi.randommod;
 
+import boblovespi.randommod.common.block.BambooBasket;
 import boblovespi.randommod.common.block.*;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
 import boblovespi.randommod.common.item.CopperKettleItem;
@@ -77,6 +78,7 @@ public class RandomMod implements ModInitializer
 
 	public static final Block COPPER_KETTLE = block("copper_kettle", CopperKettle::new, CopperKettleItem::new,
 			QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
+	public static final Block BAMBOO_BASKET = block("bamboo_basket", BambooBasket::new, QuiltBlockSettings.copyOf(Blocks.BAMBOO_PLANKS));
 
 	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT)); // TODO: make model + texture
 	public static final Block TEA_BUSH = block("tea_bush", TeaBush::new, QuiltBlockSettings.copyOf(Blocks.AZALEA).noCollision());
@@ -154,6 +156,11 @@ public class RandomMod implements ModInitializer
 			c.addAfter(Blocks.SMOOTH_BASALT, PEGMATITE);
 			c.addAfter(Blocks.AMETHYST_CLUSTER, PURE_QUARTZ_BLOCK, BUDDING_PURE_QUARTZ, SMALL_PURE_QUARTZ_BUD, MEDIUM_PURE_QUARTZ_BUD, LARGE_PURE_QUARTZ_BUD,
 					PURE_QUARTZ_CLUSTER);
+			c.addAfter(Blocks.CACTUS, TEA_BUSH);
+			c.addAfter(Items.PITCHER_POD, TEA_BUSH_CROP);
+		});
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL_BLOCKS).register(c -> {
+			c.addAfter(Blocks.CAULDRON, COPPER_SINK, COPPER_KETTLE, BAMBOO_BASKET);
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(c -> {
 			c.addAfter(Blocks.COMPARATOR, REMEMBERER);
@@ -167,6 +174,7 @@ public class RandomMod implements ModInitializer
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(c -> {
 			c.addAfter(Items.AMETHYST_SHARD, PURE_QUARTZ_SHARD);
+			c.addAfter(Items.WHEAT, TEA_LEAF);
 			c.addAfter(Items.GLISTERING_MELON_SLICE, GLEAMING_BERRIES);
 		});
 

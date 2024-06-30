@@ -86,5 +86,11 @@ public class RecipeProvider extends FabricRecipeProvider
 							   .pattern(" b ")
 							   .criterion("has_copper", conditionsFromItem(Items.COPPER_INGOT))
 							   .offerTo(exporter);
+		ShapedRecipeJsonFactory.create(RecipeCategory.DECORATIONS, RandomMod.BAMBOO_BASKET)
+							   .ingredient('b', Items.BAMBOO)
+							   .pattern("bbb")
+							   .pattern("bbb")
+							   .criterion("has_bamboo", conditionsFromItem(Items.BAMBOO))
+							   .offerTo(exporter);
 	}
 }

@@ -3,6 +3,8 @@ package boblovespi.randommod.data;
 import boblovespi.randommod.RandomMod;
 import boblovespi.randommod.common.block.CopperKettle;
 import boblovespi.randommod.common.block.CopperSink;
+import boblovespi.randommod.common.block.TeaBush;
+import boblovespi.randommod.common.block.TeaBushCrop;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.ItemModelGenerator;
@@ -31,10 +33,13 @@ public class ModelProvider extends FabricModelProvider
 		bsmg.registerAmethyst(RandomMod.MEDIUM_PURE_QUARTZ_BUD);
 		bsmg.registerAmethyst(RandomMod.SMALL_PURE_QUARTZ_BUD);
 		bsmg.registerSimpleCubeAll(RandomMod.REINFORCED_GLASS);
+		bsmg.registerSimpleState(RandomMod.BAMBOO_BASKET);
+		bsmg.method_49374(RandomMod.TEA_BUSH_CROP, BlockStateModelGenerator.TintType.NOT_TINTED, TeaBushCrop.AGE, 0, 1, 2);
 
 		createRemembererBlockState(bsmg);
 		createCopperSinkBlockState(bsmg);
 		createCopperKettleBlockState(bsmg);
+		createTeaBushBlockState(bsmg);
 	}
 
 	@Override
@@ -46,7 +51,7 @@ public class ModelProvider extends FabricModelProvider
 		itemModelGenerator.register(RandomMod.QUARTZ_DISC, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.GLEAMING_BERRIES, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.TEA_LEAF, Models.SINGLE_LAYER_ITEM);
-		itemModelGenerator.register(RandomMod.TEA_BUSH_CROP.asItem(), Models.SINGLE_LAYER_ITEM);
+//		itemModelGenerator.register(RandomMod.TEA_BUSH_CROP.asItem(), Models.SINGLE_LAYER_ITEM);
 	}
 
 	private void createRemembererBlockState(BlockStateModelGenerator bsmg)
@@ -109,6 +114,22 @@ public class ModelProvider extends FabricModelProvider
 			states.with(rotCon, BlockStateVariant.create().put(VariantSettings.MODEL, kettleId).put(VariantSettings.Y, rotation));
 		});
 		states.with(When.create().set(CopperKettle.LEGS, true), BlockStateVariant.create().put(VariantSettings.MODEL, legsId));
+		bsmg.blockStateCollector.accept(states);
+	}
+
+	private void createTeaBushBlockState(BlockStateModelGenerator bsmg)
+	{
+		var states = MultipartBlockStateSupplier.create(RandomMod.TEA_BUSH);
+		var teaBush = new Identifier(RandomMod.MODID, "block/tea_bush");
+		var extraLeaves = new Identifier(RandomMod.MODID, "block/tea_bush_extra_leaves");
+		var small = new Identifier(RandomMod.MODID, "block/tea_bush_small");
+		bsmg.registerParentedItemModel(RandomMod.TEA_BUSH, teaBush);
+		var largeState = When.create().set(TeaBush.AGE, 2, 3);
+		var maxState = When.create().set(TeaBush.AGE, 3);
+		var smallState = When.create().set(TeaBush.AGE, 0, 1);
+		states.with(largeState, BlockStateVariant.create().put(VariantSettings.MODEL, teaBush));
+		states.with(maxState, BlockStateVariant.create().put(VariantSettings.MODEL, extraLeaves));
+		states.with(smallState, BlockStateVariant.create().put(VariantSettings.MODEL, small));
 		bsmg.blockStateCollector.accept(states);
 	}
 }
