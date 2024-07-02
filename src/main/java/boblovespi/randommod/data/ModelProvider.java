@@ -51,6 +51,8 @@ public class ModelProvider extends FabricModelProvider
 		itemModelGenerator.register(RandomMod.QUARTZ_DISC, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.GLEAMING_BERRIES, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.TEA_LEAF, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(RandomMod.PANNED_TEA_LEAF, Models.SINGLE_LAYER_ITEM);
+		itemModelGenerator.register(RandomMod.GREEN_TEA_LEAF, Models.SINGLE_LAYER_ITEM);
 //		itemModelGenerator.register(RandomMod.TEA_BUSH_CROP.asItem(), Models.SINGLE_LAYER_ITEM);
 	}
 

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "boblovespirandommod:tea_leaf"
+  },
+  "result": "boblovespirandommod:panned_tea_leaf"
+}

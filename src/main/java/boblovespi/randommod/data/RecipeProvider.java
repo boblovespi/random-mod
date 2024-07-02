@@ -5,9 +5,11 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.RecipesProvider;
+import net.minecraft.data.server.recipe.CookingRecipeJsonFactory;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeCategory;
 
 import java.util.function.Consumer;
@@ -92,5 +94,9 @@ public class RecipeProvider extends FabricRecipeProvider
 							   .pattern("bbb")
 							   .criterion("has_bamboo", conditionsFromItem(Items.BAMBOO))
 							   .offerTo(exporter);
+
+		CookingRecipeJsonFactory.createSmoking(Ingredient.ofItems(RandomMod.TEA_LEAF), RecipeCategory.FOOD, RandomMod.PANNED_TEA_LEAF, 0.1f, 200)
+								.criterion("has_tea_leaf", conditionsFromItem(RandomMod.TEA_LEAF))
+								.offerTo(exporter);
 	}
 }

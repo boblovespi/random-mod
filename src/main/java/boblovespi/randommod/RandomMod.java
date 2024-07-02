@@ -54,6 +54,8 @@ public class RandomMod implements ModInitializer
 	public static final Item GLEAMING_BERRIES = item("gleaming_berries", Item::new, new Item.Settings());
 
 	public static final Item TEA_LEAF = item("tea_leaf", Item::new, new Item.Settings());
+	public static final Item PANNED_TEA_LEAF = item("panned_tea_leaf", Item::new, new Item.Settings());
+	public static final Item GREEN_TEA_LEAF = item("green_tea_leaf", Item::new, new Item.Settings());
 
 	// Blocks
 
