@@ -1,8 +1,9 @@
 package boblovespi.randommod;
 
-import boblovespi.randommod.common.block.BambooBasket;
 import boblovespi.randommod.common.block.*;
+import boblovespi.randommod.common.entity.CoinProjectile;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
+import boblovespi.randommod.common.item.Coin;
 import boblovespi.randommod.common.item.CopperKettleItem;
 import boblovespi.randommod.common.item.DepthMeter;
 import boblovespi.randommod.common.recipe.BrewingRecipes;
@@ -11,6 +12,8 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
@@ -31,6 +34,7 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
+import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 import org.quiltmc.qsl.worldgen.biome.api.BiomeModifications;
 import org.quiltmc.qsl.worldgen.biome.api.BiomeSelectors;
@@ -52,6 +56,7 @@ public class RandomMod implements ModInitializer
 	public static final Item PURE_QUARTZ_SHARD = item("pure_quartz_shard", Item::new, new Item.Settings());
 	public static final Item QUARTZ_DISC = item("quartz_disc", Item::new, new Item.Settings().maxCount(1).rarity(Rarity.RARE));
 	public static final Item GLEAMING_BERRIES = item("gleaming_berries", Item::new, new Item.Settings());
+	public static final Item COIN = item("coin", Coin::new, new Item.Settings().maxCount(16));
 
 	public static final Item TEA_LEAF = item("tea_leaf", Item::new, new Item.Settings());
 	public static final Item PANNED_TEA_LEAF = item("panned_tea_leaf", Item::new, new Item.Settings());
@@ -106,6 +111,12 @@ public class RandomMod implements ModInitializer
 
 	public static final RegistryKey<PlacedFeature> PURE_QUARTZ_SPIKE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE,
 			new Identifier(MODID, "pure_quartz_spike"));
+
+	// Entities
+
+	public static final EntityType<CoinProjectile> COIN_PROJECTILE = Registry.register(Registries.ENTITY_TYPE, new Identifier(MODID, "coin_projectile"),
+			QuiltEntityTypeBuilder.<CoinProjectile>create().entityFactory(CoinProjectile::new).setDimensions(EntityDimensions.fixed(0.25f, 0.25f))
+								  .maxChunkTrackingRange(4).trackingTickInterval(10).makeFireImmune().build());
 
 	private static <T extends Item.Settings> Item item(String name, Function<T, Item> itemProvider, T settings)
 	{
