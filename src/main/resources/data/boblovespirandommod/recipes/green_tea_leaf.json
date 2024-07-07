@@ -1,0 +1,8 @@
+{
+	"type": "boblovespirandommod:basket_drying",
+	"dryingTime": 200,
+	"ingredient": {
+		"item": "boblovespirandommod:panned_tea_leaf"
+	},
+	"result": "boblovespirandommod:green_tea_leaf"
+}

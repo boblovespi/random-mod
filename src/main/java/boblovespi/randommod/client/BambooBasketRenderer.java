@@ -23,7 +23,7 @@ public class BambooBasketRenderer implements BlockEntityRenderer<BambooBasketBE>
 	@Override
 	public void render(BambooBasketBE basket, float delta, MatrixStack stack, VertexConsumerProvider vertexConsumers, int light, int overlay)
 	{
-		var items = basket.getStackForRender();
+		var items = basket.getStacks();
 		int k = (int) basket.getPos().asLong();
 
 		for (int i = 0; i < 4; ++i)

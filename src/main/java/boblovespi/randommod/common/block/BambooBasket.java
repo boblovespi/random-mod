@@ -11,6 +11,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -34,6 +35,19 @@ public class BambooBasket extends BlockWithEntity
 	}
 
 	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved)
+	{
+		if (!state.isOf(newState.getBlock()))
+		{
+			var be = world.getBlockEntity(pos);
+			if (be instanceof BambooBasketBE basket)
+				ItemScatterer.spawn(world, pos, basket.getStacks());
+
+			super.onStateReplaced(state, world, pos, newState, moved);
+		}
+	}
+
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
 	{
 		var be = world.getBlockEntity(pos);
@@ -52,7 +66,7 @@ public class BambooBasket extends BlockWithEntity
 				if (dist < 3 / 16f)
 					index = 4;
 				var result = basket.interact(player, stack, index);
-				RandomMod.LOGGER.info("hit ({}, {}), result index: {}", hitPos.x, hitPos.z, index);
+				//				RandomMod.LOGGER.info("hit ({}, {}), result index: {}", hitPos.x, hitPos.z, index);
 				if (result)
 					return ActionResult.SUCCESS;
 			}

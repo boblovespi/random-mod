@@ -1,17 +1,21 @@
 package boblovespi.randommod.common.block;
 
 import boblovespi.randommod.RandomMod;
+import boblovespi.randommod.common.recipe.BasketDryingRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeManager;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -24,6 +28,9 @@ public class BambooBasketBE extends BlockEntity
 	private static final int NUM_STACKS = 5;
 	private final DefaultedList<ItemStack> stacks = DefaultedList.ofSize(NUM_STACKS, ItemStack.EMPTY);
 	private final int[] dryingTimes = new int[NUM_STACKS];
+
+	private final RecipeManager.CachedCheck<Inventory, BasketDryingRecipe> recipeCache = RecipeManager.createCheck(RandomMod.BASKET_DRYING_RECIPE);
+
 	public BambooBasketBE(BlockPos pos, BlockState state)
 	{
 		super(RandomMod.BAMBOO_BASKET_BE, pos, state);
@@ -38,8 +45,10 @@ public class BambooBasketBE extends BlockEntity
 				be.dryingTimes[i]--;
 				if (be.dryingTimes[i] == 0)
 				{
-					// dried; TODO: switch to recipe handler
-					be.stacks.set(i, new ItemStack(RandomMod.GREEN_TEA_LEAF));
+					// dried
+					var tempInv = new SimpleInventory(be.stacks.get(i));
+					var result = be.recipeCache.getRecipeFor(tempInv, world).map(r -> r.craft(tempInv, world.getRegistryManager())).orElse(be.stacks.get(i));
+					be.stacks.set(i, result);
 					world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
 				}
 				be.markDirty();
@@ -47,7 +56,7 @@ public class BambooBasketBE extends BlockEntity
 		}
 	}
 
-	public DefaultedList<ItemStack> getStackForRender()
+	public DefaultedList<ItemStack> getStacks()
 	{
 		return stacks;
 	}
@@ -57,7 +66,7 @@ public class BambooBasketBE extends BlockEntity
 		if (removeItem(user, index))
 			return true;
 		else if (!item.isEmpty())
-			return addItem(user, item, index);
+			return addItem(user, user.isCreative() ? item.copy() : item, index);
 		else
 			return false;
 	}
@@ -66,8 +75,9 @@ public class BambooBasketBE extends BlockEntity
 	{
 		if (stacks.get(index).isEmpty())
 		{
+			var recipe = recipeCache.getRecipeFor(new SimpleInventory(item), world);
 			stacks.set(index, item.split(1));
-			dryingTimes[index] = 20 * 10;
+			dryingTimes[index] = recipe.map(BasketDryingRecipe::getDryingTime).orElse(0);
 			world.emitGameEvent(GameEvent.BLOCK_CHANGE, this.getPos(), GameEvent.Context.create(user, this.getCachedState()));
 			markDirty();
 			world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);

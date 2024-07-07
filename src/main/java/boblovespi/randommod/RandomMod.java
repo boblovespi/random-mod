@@ -6,6 +6,8 @@ import boblovespi.randommod.common.item.BuddingPureQuartz;
 import boblovespi.randommod.common.item.Coin;
 import boblovespi.randommod.common.item.CopperKettleItem;
 import boblovespi.randommod.common.item.DepthMeter;
+import boblovespi.randommod.common.recipe.BasketDryingRecipe;
+import boblovespi.randommod.common.recipe.BasketDryingRecipeSerializer;
 import boblovespi.randommod.common.recipe.BrewingRecipes;
 import boblovespi.randommod.common.worldgen.PureQuartzSpikeFeature;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -23,6 +25,8 @@ import net.minecraft.item.*;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.potion.Potion;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -35,6 +39,7 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.PlacedFeature;
+import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
@@ -98,10 +103,27 @@ public class RandomMod implements ModInitializer
 
 	public static final BlockEntityType<BambooBasketBE> BAMBOO_BASKET_BE = beType("bamboo_basket", BambooBasketBE::new, BAMBOO_BASKET);
 
+	// Recipe types
+
+	public static final RecipeType<BasketDryingRecipe> BASKET_DRYING_RECIPE = Registry.register(Registries.RECIPE_TYPE, id("basket_drying"),
+			new RecipeType<BasketDryingRecipe>()
+			{
+				@Override
+				public String toString()
+				{
+					return id("basket_drying").toString();
+				}
+			});
+
+	// Recipe serializer
+
+	public static final RecipeSerializer<BasketDryingRecipe> BASKET_DRYING_RECIPE_SERIALIZER = Registry.register(Registries.RECIPE_SERIALIZER, id("basket_drying"), new BasketDryingRecipeSerializer());
+
 	// Features
 
-	public static final Feature<DefaultFeatureConfig> PURE_QUARTZ_SPIKE = Registry.register(Registries.FEATURE, new Identifier(MODID, "pure_quartz_spike"),
+	public static final Feature<DefaultFeatureConfig> PURE_QUARTZ_SPIKE = Registry.register(Registries.FEATURE, id("pure_quartz_spike"),
 			new PureQuartzSpikeFeature(DefaultFeatureConfig.CODEC));
+	public static final RegistryKey<PlacedFeature> PURE_QUARTZ_SPIKE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, id("pure_quartz_spike"));
 
 	// Potions
 
@@ -117,30 +139,34 @@ public class RandomMod implements ModInitializer
 	public static final Potion GLOWING = potion("glowing", new Potion("glowing", new StatusEffectInstance(StatusEffects.GLOWING, 20 * 60 * 3)));
 	public static final Potion LONG_GLOWING = potion("long_glowing", new Potion("glowing", new StatusEffectInstance(StatusEffects.GLOWING, 20 * 60 * 8)));
 
-	public static final RegistryKey<PlacedFeature> PURE_QUARTZ_SPIKE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE,
-			new Identifier(MODID, "pure_quartz_spike"));
 
 	// Entities
 
-	public static final EntityType<CoinProjectile> COIN_PROJECTILE = Registry.register(Registries.ENTITY_TYPE, new Identifier(MODID, "coin_projectile"),
+	public static final EntityType<CoinProjectile> COIN_PROJECTILE = Registry.register(Registries.ENTITY_TYPE, id("coin_projectile"),
 			QuiltEntityTypeBuilder.<CoinProjectile>create().entityFactory(CoinProjectile::new).setDimensions(EntityDimensions.fixed(0.25f, 0.25f))
 								  .maxChunkTrackingRange(4).trackingTickInterval(10).makeFireImmune().build());
 
+	@NotNull
+	public static Identifier id(String name)
+	{
+		return new Identifier(MODID, name);
+	}
+
 	private static <T extends Item.Settings> Item item(String name, Function<T, Item> itemProvider, T settings)
 	{
-		return Registry.register(Registries.ITEM, new Identifier(MODID, name), itemProvider.apply(settings));
+		return Registry.register(Registries.ITEM, id(name), itemProvider.apply(settings));
 	}
 
 	private static <T extends AbstractBlock.Settings> Block block(String name, Function<T, Block> blockProvider, T settings)
 	{
-		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
+		var block = Registry.register(Registries.BLOCK, id(name), blockProvider.apply(settings));
 		item(name, s -> new BlockItem(block, s), new Item.Settings());
 		return block;
 	}
 
 	private static <T extends AbstractBlock.Settings> Block block(String name, String itemName, Function<T, Block> blockProvider, T settings)
 	{
-		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
+		var block = Registry.register(Registries.BLOCK, id(name), blockProvider.apply(settings));
 		item(itemName, s -> new AliasedBlockItem(block, s), new Item.Settings());
 		return block;
 	}
@@ -148,21 +174,21 @@ public class RandomMod implements ModInitializer
 	private static <T extends AbstractBlock.Settings, B extends Block> B block(String name, Function<T, B> blockProvider,
 																			   BiFunction<B, Item.Settings, BlockItem> blockItemProvider, T settings)
 	{
-		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
+		var block = Registry.register(Registries.BLOCK, id(name), blockProvider.apply(settings));
 		item(name, s -> blockItemProvider.apply(block, s), new Item.Settings());
 		return block;
 	}
 
 	private static <T extends BlockEntity> BlockEntityType<T> beType(String name, BlockEntityType.BlockEntityFactory<T> bef, Block b)
 	{
-		var id = new Identifier(MODID, name);
+		var id = id(name);
 		var type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, id.toString());
 		return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, BlockEntityType.Builder.create(bef, b).build(type));
 	}
 
 	private static Potion potion(String name, Potion potion)
 	{
-		return Registry.register(Registries.POTION, new Identifier(MODID, name), potion);
+		return Registry.register(Registries.POTION, id(name), potion);
 	}
 
 	@SuppressWarnings("UnstableApiUsage")
