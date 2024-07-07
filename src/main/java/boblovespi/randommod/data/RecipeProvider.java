@@ -80,6 +80,15 @@ public class RecipeProvider extends FabricRecipeProvider
 							   .criterion("has_glow_berries", conditionsFromItem(Items.GLOW_BERRIES))
 							   .offerTo(exporter);
 
+		ShapedRecipeJsonFactory.create(RecipeCategory.BREWING, RandomMod.COIN)
+							   .ingredient('n', Items.IRON_NUGGET)
+							   .ingredient('c', Items.COPPER_INGOT)
+							   .pattern(" n ")
+							   .pattern("ncn")
+							   .pattern(" n ")
+							   .criterion("has_copper", conditionsFromItem(Items.COPPER_INGOT))
+							   .offerTo(exporter);
+
 		ShapedRecipeJsonFactory.create(RecipeCategory.DECORATIONS, RandomMod.COPPER_KETTLE)
 							   .ingredient('c', Items.COPPER_INGOT)
 							   .ingredient('b', Blocks.COPPER_BLOCK)

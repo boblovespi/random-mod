@@ -1,11 +1,13 @@
 package boblovespi.randommod.client;
 
 import boblovespi.randommod.RandomMod;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -37,6 +39,8 @@ public class ClientEntry implements ClientModInitializer
 
 		ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> view != null && pos != null ? BiomeColors.getWaterColor(view, pos) : -1,
 				RandomMod.COPPER_SINK);
+
+		BlockEntityRendererFactories.register(RandomMod.BAMBOO_BASKET_BE, BambooBasketRenderer::new);
 
 		EntityRendererRegistry.register(RandomMod.COIN_PROJECTILE, FlyingItemEntityRenderer::new);
 	}

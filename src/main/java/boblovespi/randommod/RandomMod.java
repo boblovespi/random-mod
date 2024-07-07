@@ -11,7 +11,10 @@ import boblovespi.randommod.common.worldgen.PureQuartzSpikeFeature;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.datafixer.TypeReferences;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -26,6 +29,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.Util;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -90,6 +94,10 @@ public class RandomMod implements ModInitializer
 	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT)); // TODO: make model + texture
 	public static final Block TEA_BUSH = block("tea_bush", TeaBush::new, QuiltBlockSettings.copyOf(Blocks.AZALEA).noCollision());
 
+	// BE types
+
+	public static final BlockEntityType<BambooBasketBE> BAMBOO_BASKET_BE = beType("bamboo_basket", BambooBasketBE::new, BAMBOO_BASKET);
+
 	// Features
 
 	public static final Feature<DefaultFeatureConfig> PURE_QUARTZ_SPIKE = Registry.register(Registries.FEATURE, new Identifier(MODID, "pure_quartz_spike"),
@@ -143,6 +151,13 @@ public class RandomMod implements ModInitializer
 		var block = Registry.register(Registries.BLOCK, new Identifier(MODID, name), blockProvider.apply(settings));
 		item(name, s -> blockItemProvider.apply(block, s), new Item.Settings());
 		return block;
+	}
+
+	private static <T extends BlockEntity> BlockEntityType<T> beType(String name, BlockEntityType.BlockEntityFactory<T> bef, Block b)
+	{
+		var id = new Identifier(MODID, name);
+		var type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, id.toString());
+		return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, BlockEntityType.Builder.create(bef, b).build(type));
 	}
 
 	private static Potion potion(String name, Potion potion)
