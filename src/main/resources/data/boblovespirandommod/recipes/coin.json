@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "c": {
+      "item": "minecraft:copper_ingot"
+    },
+    "n": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    " n ",
+    "ncn",
+    " n "
+  ],
+  "result": {
+    "item": "boblovespirandommod:coin"
+  },
+  "show_notification": true
+}
