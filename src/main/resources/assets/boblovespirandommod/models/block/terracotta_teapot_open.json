@@ -1,0 +1,9 @@
+{
+  "parent": "boblovespirandommod:block/teapot_open",
+  "textures": {
+    "bottom": "minecraft:block/terracotta",
+    "lid": "minecraft:block/terracotta",
+    "plate": "minecraft:block/terracotta",
+    "texture": "minecraft:block/terracotta"
+  }
+}

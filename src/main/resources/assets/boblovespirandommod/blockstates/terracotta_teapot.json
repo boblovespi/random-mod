@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/terracotta_teapot_open"
+      },
+      "when": {
+        "open": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "boblovespirandommod:block/terracotta_teapot"
+      },
+      "when": {
+        "open": "false"
+      }
+    }
+  ]
+}

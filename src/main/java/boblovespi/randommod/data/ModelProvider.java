@@ -1,12 +1,11 @@
 package boblovespi.randommod.data;
 
 import boblovespi.randommod.RandomMod;
-import boblovespi.randommod.common.block.CopperKettle;
-import boblovespi.randommod.common.block.CopperSink;
-import boblovespi.randommod.common.block.TeaBush;
-import boblovespi.randommod.common.block.TeaBushCrop;
+import boblovespi.randommod.common.block.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.model.*;
 import net.minecraft.state.property.Properties;
@@ -14,9 +13,17 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class ModelProvider extends FabricModelProvider
 {
+	private static final TextureKey TEAPOT_LID = TextureKey.of("lid");
+	private static final TextureKey TEAPOT_PLATE = TextureKey.of("plate");
+	private static final Model TEAPOT_CLOSED_MODEL = new Model(Optional.of(RandomMod.id("block/teapot")), Optional.empty(), TextureKey.TEXTURE,
+			TextureKey.BOTTOM, TEAPOT_LID, TEAPOT_PLATE);
+	private static final Model TEAPOT_OPEN_MODEL = new Model(Optional.of(RandomMod.id("block/teapot_open")), Optional.of("_open"), TextureKey.TEXTURE,
+			TextureKey.BOTTOM, TEAPOT_LID, TEAPOT_PLATE);
+
 	public ModelProvider(FabricDataOutput output)
 	{
 		super(output);
@@ -39,6 +46,7 @@ public class ModelProvider extends FabricModelProvider
 		createRemembererBlockState(bsmg);
 		createCopperSinkBlockState(bsmg);
 		createCopperKettleBlockState(bsmg);
+		createTeapotBlockState(RandomMod.TERRACOTTA_TEAPOT, createUniformTeapotTexture(Texture.getId(Blocks.TERRACOTTA)), bsmg);
 		createTeaBushBlockState(bsmg);
 	}
 
@@ -54,7 +62,6 @@ public class ModelProvider extends FabricModelProvider
 		itemModelGenerator.register(RandomMod.PANNED_TEA_LEAF, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.GREEN_TEA_LEAF, Models.SINGLE_LAYER_ITEM);
 		itemModelGenerator.register(RandomMod.COIN, Models.SINGLE_LAYER_ITEM);
-//		itemModelGenerator.register(RandomMod.TEA_BUSH_CROP.asItem(), Models.SINGLE_LAYER_ITEM);
 	}
 
 	private void createRemembererBlockState(BlockStateModelGenerator bsmg)
@@ -133,6 +140,27 @@ public class ModelProvider extends FabricModelProvider
 		states.with(largeState, BlockStateVariant.create().put(VariantSettings.MODEL, teaBush));
 		states.with(maxState, BlockStateVariant.create().put(VariantSettings.MODEL, extraLeaves));
 		states.with(smallState, BlockStateVariant.create().put(VariantSettings.MODEL, small));
+		bsmg.blockStateCollector.accept(states);
+	}
+
+	private Texture createUniformTeapotTexture(Identifier texture)
+	{
+		return createTeapotTexture(texture, texture, texture, texture);
+	}
+
+	private Texture createTeapotTexture(Identifier texture, Identifier bottom, Identifier plate, Identifier lid)
+	{
+		return new Texture().put(TextureKey.TEXTURE, texture).put(TextureKey.BOTTOM, bottom).put(TEAPOT_PLATE, plate).put(TEAPOT_LID, lid);
+	}
+
+	private void createTeapotBlockState(Block teapot, Texture texture, BlockStateModelGenerator bsmg)
+	{
+		var states = MultipartBlockStateSupplier.create(teapot);
+		states.with(When.create().set(Teapot.OPEN, true),
+				BlockStateVariant.create().put(VariantSettings.MODEL, TEAPOT_OPEN_MODEL.upload(teapot, texture, bsmg.modelCollector)));
+		var closed = TEAPOT_CLOSED_MODEL.upload(teapot, texture, bsmg.modelCollector);
+		states.with(When.create().set(Teapot.OPEN, false), BlockStateVariant.create().put(VariantSettings.MODEL, closed));
+		bsmg.registerParentedItemModel(teapot, closed);
 		bsmg.blockStateCollector.accept(states);
 	}
 }

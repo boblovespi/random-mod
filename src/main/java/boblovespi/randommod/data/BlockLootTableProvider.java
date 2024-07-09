@@ -49,6 +49,7 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 
 		add(RandomMod.COPPER_KETTLE, block -> kettleDrop(RandomMod.COPPER_KETTLE));
 		addDrop(RandomMod.BAMBOO_BASKET);
+		addDrop(RandomMod.TERRACOTTA_TEAPOT);
 
 		add(RandomMod.TEA_BUSH_CROP, block -> applyExplosionDecay(block, LootTable.builder().pool(LootPool.builder().with(ItemEntry.builder(block)))));
 		addDrop(RandomMod.TEA_BUSH);
