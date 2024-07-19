@@ -47,7 +47,14 @@
 
 	"block.boblovespirandommod.tea_bush": "Tea Bush",
 
-	"__comment_3": "overrides",
+	"__comment_3": "effects",
 
-	"subtitles.block.amethyst_block.chime": "Crystal chimes"
+	"effect.boblovespirandommod.refreshed": "Refreshed",
+	"effect.boblovespirandommod.insomnia": "Insomnia",
+
+	"__comment_4": "overrides",
+
+	"subtitles.block.amethyst_block.chime": "Crystal chimes",
+
+	"boblovespirandommod.sleep.insomniac": "You are currently restless"
 }

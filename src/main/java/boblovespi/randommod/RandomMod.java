@@ -1,5 +1,6 @@
 package boblovespi.randommod;
 
+import boblovespi.randommod.common.TeaStatus;
 import boblovespi.randommod.common.block.*;
 import boblovespi.randommod.common.entity.CoinProjectile;
 import boblovespi.randommod.common.item.BuddingPureQuartz;
@@ -10,6 +11,7 @@ import boblovespi.randommod.common.recipe.BasketDryingRecipe;
 import boblovespi.randommod.common.recipe.BasketDryingRecipeSerializer;
 import boblovespi.randommod.common.recipe.BrewingRecipes;
 import boblovespi.randommod.common.worldgen.PureQuartzSpikeFeature;
+import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.block.*;
@@ -19,8 +21,11 @@ import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.datafixer.TypeReferences;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
@@ -31,6 +36,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.Util;
@@ -148,6 +154,11 @@ public class RandomMod implements ModInitializer
 			QuiltEntityTypeBuilder.<CoinProjectile>create().entityFactory(CoinProjectile::new).setDimensions(EntityDimensions.fixed(0.25f, 0.25f))
 								  .maxChunkTrackingRange(4).trackingTickInterval(10).makeFireImmune().build());
 
+	// Status Effects
+
+	public static final StatusEffect REFRESHED = effect("refreshed", new TeaStatus(StatusEffectType.BENEFICIAL, 0xd2f5bd));
+	public static final StatusEffect INSOMNIA = effect("insomnia", new TeaStatus(StatusEffectType.NEUTRAL, 0xe38a72));
+
 	@NotNull
 	public static Identifier id(String name)
 	{
@@ -191,6 +202,11 @@ public class RandomMod implements ModInitializer
 	private static Potion potion(String name, Potion potion)
 	{
 		return Registry.register(Registries.POTION, id(name), potion);
+	}
+
+	private static StatusEffect effect(String name, StatusEffect effect)
+	{
+		return Registry.register(Registries.STATUS_EFFECT, id(name), effect);
 	}
 
 	@SuppressWarnings("UnstableApiUsage")
@@ -241,6 +257,15 @@ public class RandomMod implements ModInitializer
 		LootTableEvents.MODIFY.register((r, l, n, t, s) -> {
 			if (LootTables.SNIFFER_DIGGING_GAMEPLAY.equals(n))
 				t.modifyPools(p -> p.with(ItemEntry.builder(TEA_BUSH_CROP)));
+		});
+
+		LOGGER.debug("Adding event handlers...");
+		EntitySleepEvents.ALLOW_SLEEPING.register((p, pos) -> {
+			if (p.hasStatusEffect(RandomMod.INSOMNIA))
+			{
+				p.sendMessage(Text.translatable("boblovespirandommod.sleep.insomniac"), true);
+				return PlayerEntity.SleepFailureReason.OTHER_PROBLEM;
+			} else return null;
 		});
 	}
 }
