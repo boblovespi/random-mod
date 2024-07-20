@@ -101,8 +101,11 @@ public class RandomMod implements ModInitializer
 	public static final Block COPPER_KETTLE = block("copper_kettle", CopperKettle::new, CopperKettleItem::new,
 			QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
 	public static final Block BAMBOO_BASKET = block("bamboo_basket", BambooBasket::new, QuiltBlockSettings.copyOf(Blocks.BAMBOO_PLANKS));
+	
 	public static final Block TERRACOTTA_TEAPOT = block("terracotta_teapot", Teapot::new,
 			QuiltBlockSettings.copyOf(Blocks.TERRACOTTA).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
+
+	public static final Block TERRACOTTA_TEACUP = block("terracotta_teacup", Teacup::new, QuiltBlockSettings.copyOf(TERRACOTTA_TEAPOT));
 
 	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT)); // TODO: make model + texture
 	public static final Block TEA_BUSH = block("tea_bush", TeaBush::new, QuiltBlockSettings.copyOf(Blocks.AZALEA).noCollision());
@@ -232,7 +235,7 @@ public class RandomMod implements ModInitializer
 			c.addAfter(Items.PITCHER_POD, TEA_BUSH_CROP);
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL_BLOCKS).register(c -> {
-			c.addAfter(Blocks.CAULDRON, COPPER_SINK, COPPER_KETTLE, BAMBOO_BASKET);
+			c.addAfter(Blocks.CAULDRON, COPPER_SINK, COPPER_KETTLE, TERRACOTTA_TEAPOT, TERRACOTTA_TEACUP, BAMBOO_BASKET);
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE_BLOCKS).register(c -> {
 			c.addAfter(Blocks.COMPARATOR, REMEMBERER);

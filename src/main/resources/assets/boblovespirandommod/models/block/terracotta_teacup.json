@@ -1,0 +1,7 @@
+{
+  "parent": "boblovespirandommod:block/teacup",
+  "textures": {
+    "bottom": "minecraft:block/terracotta",
+    "texture": "minecraft:block/terracotta"
+  }
+}

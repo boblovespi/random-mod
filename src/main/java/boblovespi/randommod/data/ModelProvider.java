@@ -23,6 +23,7 @@ public class ModelProvider extends FabricModelProvider
 			TextureKey.BOTTOM, TEAPOT_LID, TEAPOT_PLATE);
 	private static final Model TEAPOT_OPEN_MODEL = new Model(Optional.of(RandomMod.id("block/teapot_open")), Optional.of("_open"), TextureKey.TEXTURE,
 			TextureKey.BOTTOM, TEAPOT_LID, TEAPOT_PLATE);
+	private static final Model TEACUP_MODEL = new Model(Optional.of(RandomMod.id("block/teacup")), Optional.empty(), TextureKey.TEXTURE, TextureKey.BOTTOM);
 
 	public ModelProvider(FabricDataOutput output)
 	{
@@ -46,7 +47,11 @@ public class ModelProvider extends FabricModelProvider
 		createRemembererBlockState(bsmg);
 		createCopperSinkBlockState(bsmg);
 		createCopperKettleBlockState(bsmg);
+
 		createTeapotBlockState(RandomMod.TERRACOTTA_TEAPOT, createUniformTeapotTexture(Texture.getId(Blocks.TERRACOTTA)), bsmg);
+
+		createTeacupBlockState(RandomMod.TERRACOTTA_TEACUP, createUniformTeacupTexture(Texture.getId(Blocks.TERRACOTTA)), bsmg);
+
 		createTeaBushBlockState(bsmg);
 	}
 
@@ -162,5 +167,23 @@ public class ModelProvider extends FabricModelProvider
 		states.with(When.create().set(Teapot.OPEN, false), BlockStateVariant.create().put(VariantSettings.MODEL, closed));
 		bsmg.registerParentedItemModel(teapot, closed);
 		bsmg.blockStateCollector.accept(states);
+	}
+
+	private Texture createUniformTeacupTexture(Identifier texture)
+	{
+		return createTeacupTexture(texture, texture);
+	}
+
+	private Texture createTeacupTexture(Identifier texture, Identifier bottom)
+	{
+		return new Texture().put(TextureKey.TEXTURE, texture).put(TextureKey.BOTTOM, bottom);
+	}
+
+	private void createTeacupBlockState(Block teacup, Texture texture, BlockStateModelGenerator bsmg)
+	{
+		var model = TEACUP_MODEL.upload(teacup, texture, bsmg.modelCollector);
+		var state = VariantsBlockStateSupplier.create(teacup, BlockStateVariant.create().put(VariantSettings.MODEL, model));
+		bsmg.registerParentedItemModel(teacup, model);
+		bsmg.blockStateCollector.accept(state);
 	}
 }

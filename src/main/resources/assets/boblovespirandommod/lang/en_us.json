@@ -40,6 +40,7 @@
 	"block.boblovespirandommod.copper_kettle": "Copper Kettle",
 	"block.boblovespirandommod.bamboo_basket": "Bamboo Basket",
 	"block.boblovespirandommod.terracotta_teapot": "Unglazed Teapot",
+	"block.boblovespirandommod.terracotta_teacup": "Unglazed Teacup",
 
 	"block.boblovespirandommod.copper_kettle.empty": "Empty",
 	"block.boblovespirandommod.copper_kettle.filled": "Water",
@@ -52,7 +53,12 @@
 	"effect.boblovespirandommod.refreshed": "Refreshed",
 	"effect.boblovespirandommod.insomnia": "Insomnia",
 
-	"__comment_4": "overrides",
+	"__comment_4": "teas",
+
+	"boblovespirandommod.teas.duration": ": %ss",
+	"boblovespirandommod.teas.empty": "Empty",
+
+	"__comment_5": "overrides",
 
 	"subtitles.block.amethyst_block.chime": "Crystal chimes",
 
