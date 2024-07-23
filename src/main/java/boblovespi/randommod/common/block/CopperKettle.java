@@ -6,6 +6,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
@@ -57,6 +58,16 @@ public class CopperKettle extends HorizontalFacingBlock
 
 		var legs = world.getBlockState(pos.down()).isIn(BlockTags.CAMPFIRES);
 		return state.with(LEGS, legs);
+	}
+
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state)
+	{
+		var stack = super.getPickStack(world, pos, state);
+		var nbt = new NbtCompound();
+		nbt.putString("contents", state.get(CONTENTS).asString());
+		stack.setNbt(nbt);
+		return stack;
 	}
 
 	@Override

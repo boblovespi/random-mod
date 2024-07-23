@@ -101,7 +101,7 @@ public class RandomMod implements ModInitializer
 	public static final Block COPPER_KETTLE = block("copper_kettle", CopperKettle::new, CopperKettleItem::new,
 			QuiltBlockSettings.copyOf(Blocks.COPPER_BLOCK).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
 	public static final Block BAMBOO_BASKET = block("bamboo_basket", BambooBasket::new, QuiltBlockSettings.copyOf(Blocks.BAMBOO_PLANKS));
-	
+
 	public static final Block TERRACOTTA_TEAPOT = block("terracotta_teapot", Teapot::new,
 			QuiltBlockSettings.copyOf(Blocks.TERRACOTTA).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
 
@@ -113,6 +113,8 @@ public class RandomMod implements ModInitializer
 	// BE types
 
 	public static final BlockEntityType<BambooBasketBE> BAMBOO_BASKET_BE = beType("bamboo_basket", BambooBasketBE::new, BAMBOO_BASKET);
+	public static final BlockEntityType<TeapotBE> TEAPOT_BE = beType("teapot", TeapotBE::new, TERRACOTTA_TEAPOT);
+	public static final BlockEntityType<TeacupBE> TEACUP_BE = beType("teacup", TeacupBE::new, TERRACOTTA_TEACUP);
 
 	// Recipe types
 
@@ -149,7 +151,6 @@ public class RandomMod implements ModInitializer
 
 	public static final Potion GLOWING = potion("glowing", new Potion("glowing", new StatusEffectInstance(StatusEffects.GLOWING, 20 * 60 * 3)));
 	public static final Potion LONG_GLOWING = potion("long_glowing", new Potion("glowing", new StatusEffectInstance(StatusEffects.GLOWING, 20 * 60 * 8)));
-
 
 	// Entities
 

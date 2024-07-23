@@ -12,8 +12,10 @@ import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
+import net.minecraft.loot.function.CopyNbtLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.function.SetNbtLootFunction;
+import net.minecraft.loot.provider.nbt.ContextLootNbtProvider;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.StatePredicate;
@@ -49,7 +51,8 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 
 		add(RandomMod.COPPER_KETTLE, block -> kettleDrop(RandomMod.COPPER_KETTLE));
 		addDrop(RandomMod.BAMBOO_BASKET);
-		addDrop(RandomMod.TERRACOTTA_TEAPOT);
+		add(RandomMod.TERRACOTTA_TEAPOT, teapotDrop(RandomMod.TERRACOTTA_TEAPOT));
+		add(RandomMod.TERRACOTTA_TEACUP, teapotDrop(RandomMod.TERRACOTTA_TEACUP));
 
 		add(RandomMod.TEA_BUSH_CROP, block -> applyExplosionDecay(block, LootTable.builder().pool(LootPool.builder().with(ItemEntry.builder(block)))));
 		addDrop(RandomMod.TEA_BUSH);
@@ -68,5 +71,31 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 													BlockStatePropertyLootCondition.builder(drop).properties(
 															StatePredicate.Builder.create().exactMatch(CopperKettle.CONTENTS, c.asString())));
 										}))));
+	}
+
+	private LootTable.Builder teapotDrop(Block drop)
+	{
+		return LootTable.builder().pool(
+				LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(
+						applyExplosionDecay(
+								drop, ItemEntry.builder(drop).apply(
+										CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
+												.withOperation("teaType", "teaType")
+												.withOperation("teaTypeId", "teaTypeId")
+												.withOperation("amount", "amount")
+												.withOperation("brewed", "brewed")
+										))));
+	}
+
+	private LootTable.Builder teacupDrop(Block drop)
+	{
+		return LootTable.builder().pool(
+				LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(
+						applyExplosionDecay(
+								drop, ItemEntry.builder(drop).apply(
+										CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
+														   .withOperation("teaType", "teaType")
+														   .withOperation("teaTypeId", "teaTypeId")
+										 ))));
 	}
 }
