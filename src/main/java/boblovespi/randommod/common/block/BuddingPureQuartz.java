@@ -1,4 +1,4 @@
-package boblovespi.randommod.common.item;
+package boblovespi.randommod.common.block;
 
 import boblovespi.randommod.RandomMod;
 import net.minecraft.block.*;

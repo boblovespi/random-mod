@@ -24,7 +24,7 @@ public class TeacupItem extends BlockItem
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand)
 	{
-		var nbt = user.getStackInHand(hand).getNbt();
+		var nbt = user.getStackInHand(hand).getSubNbt("teacup");
 		if (nbt != null && nbt.getInt("teaTypeId") > 0)
 		{
 			user.setCurrentHand(hand);
@@ -36,7 +36,7 @@ public class TeacupItem extends BlockItem
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user)
 	{
-		var nbt = stack.getNbt();
+		var nbt = stack.getSubNbt("teacup");
 		if (nbt != null && nbt.getInt("teaTypeId") > 0)
 		{
 			var type = TeapotBE.TeaTypes.values()[nbt.getInt("teaTypeId")];
@@ -62,7 +62,7 @@ public class TeacupItem extends BlockItem
 	@Override
 	public int getMaxUseTime(ItemStack stack)
 	{
-		var nbt = stack.getNbt();
+		var nbt = stack.getSubNbt("teacup");
 		if (nbt != null && nbt.getInt("teaTypeId") > 0)
 			return 32;
 		return 0;

@@ -4,6 +4,7 @@ import boblovespi.randommod.RandomMod;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -75,7 +76,7 @@ public class Teacup extends BlockWithEntity
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options)
 	{
-		var nbt = stack.getNbt();
+		var nbt = stack.getSubNbt("teacup");
 		var contents = nbt == null ? "empty" : nbt.getString("teaType");
 		var time = nbt == null ? 0 : nbt.getInt("time");
 		tooltip.add(
@@ -88,5 +89,12 @@ public class Teacup extends BlockWithEntity
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state)
 	{
 		return new TeacupBE(pos, state);
+	}
+
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+	{
+		if (stack.getSubNbt("teacup") != null)
+			world.getBlockEntity(pos, RandomMod.TEACUP_BE).ifPresent(t -> t.readNbt(stack.getSubNbt("teacup")));
 	}
 }

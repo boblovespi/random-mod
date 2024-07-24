@@ -52,7 +52,7 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 		add(RandomMod.COPPER_KETTLE, block -> kettleDrop(RandomMod.COPPER_KETTLE));
 		addDrop(RandomMod.BAMBOO_BASKET);
 		add(RandomMod.TERRACOTTA_TEAPOT, teapotDrop(RandomMod.TERRACOTTA_TEAPOT));
-		add(RandomMod.TERRACOTTA_TEACUP, teapotDrop(RandomMod.TERRACOTTA_TEACUP));
+		add(RandomMod.TERRACOTTA_TEACUP, teacupDrop(RandomMod.TERRACOTTA_TEACUP));
 
 		add(RandomMod.TEA_BUSH_CROP, block -> applyExplosionDecay(block, LootTable.builder().pool(LootPool.builder().with(ItemEntry.builder(block)))));
 		addDrop(RandomMod.TEA_BUSH);
@@ -80,10 +80,11 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 						applyExplosionDecay(
 								drop, ItemEntry.builder(drop).apply(
 										CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
-												.withOperation("teaType", "teaType")
-												.withOperation("teaTypeId", "teaTypeId")
-												.withOperation("amount", "amount")
-												.withOperation("brewed", "brewed")
+														   .withOperation("teaType", "teapot.teaType")
+														   .withOperation("teaTypeId", "teapot.teaTypeId")
+														   .withOperation("brewed", "teapot.brewed")
+														   .withOperation("brewTime", "teapot.brewTime")
+														   .withOperation("amount", "teapot.amount")
 										))));
 	}
 
@@ -94,8 +95,8 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider
 						applyExplosionDecay(
 								drop, ItemEntry.builder(drop).apply(
 										CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
-														   .withOperation("teaType", "teaType")
-														   .withOperation("teaTypeId", "teaTypeId")
+														   .withOperation("teaType", "teacup.teaType")
+														   .withOperation("teaTypeId", "teacup.teaTypeId")
 										 ))));
 	}
 }

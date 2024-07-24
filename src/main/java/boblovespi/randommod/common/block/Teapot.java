@@ -6,6 +6,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -107,7 +108,7 @@ public class Teapot extends BlockWithEntity
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options)
 	{
-		var nbt = stack.getNbt();
+		var nbt = stack.getSubNbt("teapot");
 		var teaType = nbt == null ? "empty" : nbt.getString("teaType");
 		var amount = nbt == null ? 0 : nbt.getInt("amount");
 		tooltip.add(Text.literal(teaType + ": " + amount + " cups [TODO: REPLACE WITH LOCALIZATION]").formatted(Formatting.GRAY));
@@ -127,5 +128,12 @@ public class Teapot extends BlockWithEntity
 		if (world.isClient)
 			return null;
 		return checkType(type, RandomMod.TEAPOT_BE, TeapotBE::tick);
+	}
+
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+	{
+		if (stack.getSubNbt("teapot") != null)
+			world.getBlockEntity(pos, RandomMod.TEAPOT_BE).ifPresent(t -> t.readNbt(stack.getSubNbt("teapot")));
 	}
 }

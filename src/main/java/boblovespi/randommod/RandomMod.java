@@ -3,10 +3,7 @@ package boblovespi.randommod;
 import boblovespi.randommod.common.TeaStatus;
 import boblovespi.randommod.common.block.*;
 import boblovespi.randommod.common.entity.CoinProjectile;
-import boblovespi.randommod.common.item.BuddingPureQuartz;
-import boblovespi.randommod.common.item.Coin;
-import boblovespi.randommod.common.item.CopperKettleItem;
-import boblovespi.randommod.common.item.DepthMeter;
+import boblovespi.randommod.common.item.*;
 import boblovespi.randommod.common.recipe.BasketDryingRecipe;
 import boblovespi.randommod.common.recipe.BasketDryingRecipeSerializer;
 import boblovespi.randommod.common.recipe.BrewingRecipes;
@@ -105,7 +102,7 @@ public class RandomMod implements ModInitializer
 	public static final Block TERRACOTTA_TEAPOT = block("terracotta_teapot", Teapot::new,
 			QuiltBlockSettings.copyOf(Blocks.TERRACOTTA).strength(0.1f, 3.5f).nonOpaque().pistonBehavior(PistonBehavior.DESTROY).requiresTool(false));
 
-	public static final Block TERRACOTTA_TEACUP = block("terracotta_teacup", Teacup::new, QuiltBlockSettings.copyOf(TERRACOTTA_TEAPOT));
+	public static final Block TERRACOTTA_TEACUP = block("terracotta_teacup", Teacup::new, TeacupItem::new, QuiltBlockSettings.copyOf(TERRACOTTA_TEAPOT));
 
 	public static final Block TEA_BUSH_CROP = block("tea_bush_crop", "tea_seeds", TeaBushCrop::new, QuiltBlockSettings.copyOf(Blocks.WHEAT)); // TODO: make model + texture
 	public static final Block TEA_BUSH = block("tea_bush", TeaBush::new, QuiltBlockSettings.copyOf(Blocks.AZALEA).noCollision());

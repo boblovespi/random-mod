@@ -13,22 +13,27 @@
                 {
                   "op": "replace",
                   "source": "teaType",
-                  "target": "teaType"
+                  "target": "teapot.teaType"
                 },
                 {
                   "op": "replace",
                   "source": "teaTypeId",
-                  "target": "teaTypeId"
-                },
-                {
-                  "op": "replace",
-                  "source": "amount",
-                  "target": "amount"
+                  "target": "teapot.teaTypeId"
                 },
                 {
                   "op": "replace",
                   "source": "brewed",
-                  "target": "brewed"
+                  "target": "teapot.brewed"
+                },
+                {
+                  "op": "replace",
+                  "source": "brewTime",
+                  "target": "teapot.brewTime"
+                },
+                {
+                  "op": "replace",
+                  "source": "amount",
+                  "target": "teapot.amount"
                 }
               ],
               "source": "block_entity"

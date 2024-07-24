@@ -29,7 +29,7 @@ public class TeacupBE extends BlockEntity
 	{
 		if (teaType == TeapotBE.TeaTypes.EMPTY && item.isOf(RandomMod.TERRACOTTA_TEAPOT.asItem())) // TODO: replace with tag or smth
 		{
-			var nbt = item.getNbt();
+			var nbt = item.getSubNbt("teapot");
 			if (nbt != null)
 			{
 				var amt = nbt.getInt("amount");
@@ -83,8 +83,7 @@ public class TeacupBE extends BlockEntity
 	{
 		switch (teaType)
 		{
-			case EMPTY, WATER -> {
-			}
+			case EMPTY, WATER -> {}
 			case GREEN -> user.addStatusEffect(new StatusEffectInstance(RandomMod.REFRESHED, 20 * 30));
 		}
 		teaType = TeapotBE.TeaTypes.EMPTY;

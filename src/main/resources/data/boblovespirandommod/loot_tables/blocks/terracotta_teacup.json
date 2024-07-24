@@ -13,22 +13,12 @@
                 {
                   "op": "replace",
                   "source": "teaType",
-                  "target": "teaType"
+                  "target": "teacup.teaType"
                 },
                 {
                   "op": "replace",
                   "source": "teaTypeId",
-                  "target": "teaTypeId"
-                },
-                {
-                  "op": "replace",
-                  "source": "amount",
-                  "target": "amount"
-                },
-                {
-                  "op": "replace",
-                  "source": "brewed",
-                  "target": "brewed"
+                  "target": "teacup.teaTypeId"
                 }
               ],
               "source": "block_entity"
